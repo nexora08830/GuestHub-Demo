@@ -1,1235 +1,1504 @@
 <!DOCTYPE html>
 <html lang="es" dir="ltr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#17251f">
-  <title>Hostal Rambla | Guest Hub</title>
-
-  <style>
-    :root {
-      --green: #17251f;
-      --green2: #22372e;
-      --gold: #c5a46d;
-      --cream: #f7f4ee;
-      --white: #ffffff;
-      --text: #202522;
-      --muted: #6c746f;
-      --line: #e7e4dd;
-      --shadow: 0 10px 30px rgba(0,0,0,.08);
-    }
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-      Helvetica, Arial, sans-serif;
-      background: var(--cream);
-      color: var(--text);
-      line-height: 1.5;
-    }
-
-    button, a {
-      font: inherit;
-    }
-
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    .hero {
-      min-height: 420px;
-      padding: 24px 20px 35px;
-      background:
-        linear-gradient(135deg, rgba(12,28,21,.96), rgba(35,61,49,.90)),
-        url("https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1600&q=80")
-        center/cover;
-      color: white;
-      position: relative;
-    }
-
-    .topbar {
-      max-width: 1000px;
-      margin: auto;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 15px;
-    }
-
-    .demo-badge {
-      display: inline-block;
-      font-size: 11px;
-      letter-spacing: 1.6px;
-      border: 1px solid rgba(255,255,255,.35);
-      border-radius: 50px;
-      padding: 7px 12px;
-      background: rgba(255,255,255,.08);
-      backdrop-filter: blur(8px);
-    }
-
-    .language-select {
-      background: rgba(255,255,255,.12);
-      border: 1px solid rgba(255,255,255,.25);
-      color: white;
-      border-radius: 12px;
-      padding: 9px 10px;
-      outline: none;
-    }
-
-    .language-select option {
-      color: #111;
-      background: white;
-    }
-
-    .hero-content {
-      max-width: 800px;
-      margin: 75px auto 0;
-      text-align: center;
-    }
-
-    .hotel-small {
-      color: var(--gold);
-      text-transform: uppercase;
-      letter-spacing: 3px;
-      font-size: 12px;
-      font-weight: 700;
-      margin-bottom: 10px;
-    }
-
-    .hero h1 {
-      font-family: Georgia, "Times New Roman", serif;
-      font-size: clamp(38px, 8vw, 65px);
-      line-height: 1;
-      margin-bottom: 15px;
-      font-weight: 500;
-    }
-
-    .hero p {
-      max-width: 600px;
-      margin: auto;
-      color: rgba(255,255,255,.82);
-      font-size: 16px;
-    }
-
-    .quick {
-      max-width: 900px;
-      margin: -35px auto 30px;
-      padding: 0 16px;
-      position: relative;
-      z-index: 10;
-    }
-
-    .quick-grid {
-      background: white;
-      border-radius: 20px;
-      box-shadow: var(--shadow);
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      overflow: hidden;
-    }
-
-    .quick-btn {
-      border: 0;
-      background: white;
-      padding: 20px 8px;
-      cursor: pointer;
-      transition: .2s;
-      border-right: 1px solid #eee;
-    }
-
-    .quick-btn:last-child {
-      border-right: 0;
-    }
-
-    .quick-btn:hover {
-      background: #f8f6f1;
-    }
-
-    .quick-icon {
-      display: block;
-      font-size: 24px;
-      margin-bottom: 6px;
-    }
-
-    .quick-label {
-      font-size: 12px;
-      font-weight: 700;
-    }
-
-    main {
-      max-width: 900px;
-      margin: auto;
-      padding: 5px 16px 60px;
-    }
-
-    .section-title {
-      margin: 35px 0 15px;
-    }
-
-    .section-title span {
-      color: var(--gold);
-      font-size: 12px;
-      text-transform: uppercase;
-      font-weight: 800;
-      letter-spacing: 1.5px;
-    }
-
-    .section-title h2 {
-      font-family: Georgia, "Times New Roman", serif;
-      font-weight: 500;
-      font-size: 30px;
-      color: var(--green);
-      margin-top: 4px;
-    }
-
-    .card {
-      background: white;
-      border-radius: 18px;
-      padding: 22px;
-      box-shadow: 0 5px 18px rgba(0,0,0,.055);
-      margin-bottom: 14px;
-      border: 1px solid rgba(0,0,0,.035);
-    }
-
-    .card h3 {
-      font-size: 17px;
-      color: var(--green);
-      margin-bottom: 8px;
-    }
-
-    .card p {
-      color: var(--muted);
-      font-size: 14px;
-    }
-
-    .two-cols {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 14px;
-    }
-
-    .info-row {
-      display: flex;
-      gap: 13px;
-      align-items: flex-start;
-    }
-
-    .circle {
-      width: 42px;
-      height: 42px;
-      min-width: 42px;
-      border-radius: 13px;
-      background: #f2eee5;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 20px;
-    }
-
-    .wifi-box {
-      background: var(--green);
-      color: white;
-    }
-
-    .wifi-box h3,
-    .wifi-box p {
-      color: white;
-    }
-
-    .wifi-data {
-      background: rgba(255,255,255,.09);
-      border: 1px solid rgba(255,255,255,.12);
-      padding: 15px;
-      border-radius: 13px;
-      margin-top: 15px;
-    }
-
-    .wifi-line {
-      display: flex;
-      justify-content: space-between;
-      gap: 15px;
-      margin: 5px 0;
-      font-size: 14px;
-    }
-
-    .small-note {
-      font-size: 12px !important;
-      opacity: .75;
-      margin-top: 10px;
-    }
-
-    .action {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 7px;
-      background: var(--green);
-      color: white;
-      padding: 12px 17px;
-      border-radius: 11px;
-      font-size: 13px;
-      font-weight: 700;
-      margin-top: 14px;
-      border: 0;
-      cursor: pointer;
-    }
-
-    .action.gold {
-      background: var(--gold);
-      color: #171717;
-    }
-
-    .action.light {
-      background: #f0ede6;
-      color: var(--green);
-    }
-
-    .tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-top: 12px;
-    }
-
-    .tag {
-      background: #f4f1eb;
-      border-radius: 50px;
-      padding: 7px 11px;
-      font-size: 12px;
-      color: #535b56;
-    }
-
-    .transport {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 12px;
-    }
-
-    .transport .card {
-      height: 100%;
-    }
-
-    .big-icon {
-      font-size: 30px;
-      margin-bottom: 10px;
-    }
-
-    .place-list {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 12px;
-    }
-
-    .place {
-      background: white;
-      border-radius: 16px;
-      padding: 17px;
-      box-shadow: 0 4px 14px rgba(0,0,0,.045);
-    }
-
-    .place strong {
-      display: block;
-      color: var(--green);
-      margin-bottom: 5px;
-    }
-
-    .place span {
-      color: var(--muted);
-      font-size: 13px;
-    }
-
-    details {
-      background: white;
-      border-radius: 14px;
-      margin-bottom: 9px;
-      padding: 16px 18px;
-      box-shadow: 0 3px 12px rgba(0,0,0,.04);
-    }
-
-    summary {
-      cursor: pointer;
-      font-weight: 700;
-      color: var(--green);
-    }
-
-    details p {
-      margin-top: 10px;
-      color: var(--muted);
-      font-size: 14px;
-    }
-
-    .review {
-      text-align: center;
-      background: linear-gradient(135deg, var(--green), #2d493c);
-      color: white;
-      padding: 35px 20px;
-      border-radius: 22px;
-      margin-top: 40px;
-    }
-
-    .stars {
-      color: #f4c65d;
-      font-size: 27px;
-      letter-spacing: 3px;
-      margin: 10px 0;
-    }
-
-    .review p {
-      color: rgba(255,255,255,.8);
-      max-width: 500px;
-      margin: auto;
-    }
-
-    .contact-buttons {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 15px;
-    }
-
-    footer {
-      text-align: center;
-      padding: 35px 20px;
-      background: #101b16;
-      color: rgba(255,255,255,.65);
-    }
-
-    footer strong {
-      display: block;
-      color: white;
-      letter-spacing: 2px;
-      margin-bottom: 6px;
-    }
-
-    footer .nexora {
-      color: var(--gold);
-    }
-
-    .demo-warning {
-      max-width: 900px;
-      margin: 20px auto 0;
-      background: #fff8e9;
-      border: 1px solid #ead8aa;
-      color: #69572d;
-      padding: 13px 16px;
-      border-radius: 13px;
-      font-size: 12px;
-    }
-
-    [dir="rtl"] {
-      text-align: right;
-    }
-
-    [dir="rtl"] .hero-content,
-    [dir="rtl"] footer,
-    [dir="rtl"] .review {
-      text-align: center;
-    }
-
-    @media (max-width: 700px) {
-      .hero {
-        min-height: 390px;
-      }
-
-      .hero-content {
-        margin-top: 65px;
-      }
-
-      .quick-grid {
-        grid-template-columns: repeat(4, 1fr);
-      }
-
-      .quick-btn {
-        padding: 16px 3px;
-      }
-
-      .quick-label {
-        font-size: 10px;
-      }
-
-      .two-cols,
-      .transport,
-      .place-list {
-        grid-template-columns: 1fr;
-      }
-
-      .section-title h2 {
-        font-size: 26px;
-      }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0a0d0c">
+
+<title>Hostal Rambla | Guest Hub</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --black:#090c0b;
+  --dark:#0f1412;
+  --dark2:#151c19;
+  --card:#18201d;
+  --gold:#c7a66a;
+  --gold-light:#e1c997;
+  --white:#f7f5ef;
+  --muted:#a9b0ac;
+  --line:rgba(255,255,255,.09);
+}
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  font-family:"DM Sans",sans-serif;
+  background:var(--black);
+  color:var(--white);
+  line-height:1.55;
+  padding-bottom:78px;
+}
+
+a{
+  text-decoration:none;
+  color:inherit;
+}
+
+button,select{
+  font:inherit;
+}
+
+/* HERO */
+
+.hero{
+  min-height:92vh;
+  position:relative;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  padding:24px;
+  background:
+  linear-gradient(
+    180deg,
+    rgba(5,8,7,.30) 0%,
+    rgba(5,8,7,.40) 35%,
+    rgba(5,8,7,.96) 100%
+  ),
+  url("https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1800&q=90")
+  center/cover;
+}
+
+.top{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.brand{
+  font-size:11px;
+  letter-spacing:2.6px;
+  font-weight:600;
+}
+
+.demo{
+  color:var(--gold-light);
+}
+
+.language{
+  border:1px solid rgba(255,255,255,.25);
+  background:rgba(10,13,12,.55);
+  backdrop-filter:blur(10px);
+  color:white;
+  padding:9px 12px;
+  border-radius:30px;
+  outline:none;
+}
+
+.language option{
+  color:black;
+}
+
+.heroContent{
+  max-width:900px;
+  margin:auto auto 40px;
+  width:100%;
+}
+
+.location{
+  color:var(--gold-light);
+  font-size:11px;
+  letter-spacing:2.5px;
+  text-transform:uppercase;
+  margin-bottom:14px;
+}
+
+h1{
+  font-family:"Playfair Display",serif;
+  font-weight:400;
+  font-size:clamp(50px,10vw,92px);
+  line-height:.95;
+  letter-spacing:-2px;
+  max-width:800px;
+}
+
+.heroText{
+  margin-top:24px;
+  max-width:520px;
+  font-size:17px;
+  color:rgba(255,255,255,.78);
+  font-weight:300;
+}
+
+.scroll{
+  margin-top:35px;
+  display:inline-flex;
+  align-items:center;
+  gap:12px;
+  font-size:12px;
+  letter-spacing:1.5px;
+  text-transform:uppercase;
+}
+
+.scrollLine{
+  width:45px;
+  height:1px;
+  background:var(--gold);
+}
+
+/* CONTAINER */
+
+.container{
+  max-width:1050px;
+  margin:auto;
+  padding:0 20px;
+}
+
+.intro{
+  padding:75px 0 30px;
+}
+
+.eyebrow{
+  color:var(--gold);
+  font-size:11px;
+  letter-spacing:2.5px;
+  text-transform:uppercase;
+  font-weight:600;
+}
+
+.title{
+  font-family:"Playfair Display",serif;
+  font-size:clamp(34px,6vw,52px);
+  font-weight:400;
+  line-height:1.1;
+  margin-top:10px;
+}
+
+.subtitle{
+  color:var(--muted);
+  max-width:580px;
+  margin-top:15px;
+  font-weight:300;
+}
+
+/* FEATURE CARDS */
+
+.features{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:12px;
+  margin:35px 0 75px;
+}
+
+.feature{
+  min-height:330px;
+  border-radius:3px;
+  position:relative;
+  overflow:hidden;
+  display:flex;
+  align-items:flex-end;
+  padding:22px;
+  cursor:pointer;
+}
+
+.feature::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(
+    transparent 20%,
+    rgba(0,0,0,.85)
+  );
+}
+
+.feature img{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  transition:transform .5s ease;
+}
+
+.feature:hover img{
+  transform:scale(1.04);
+}
+
+.featureContent{
+  position:relative;
+  z-index:2;
+}
+
+.featureSmall{
+  font-size:10px;
+  color:var(--gold-light);
+  text-transform:uppercase;
+  letter-spacing:2px;
+}
+
+.featureTitle{
+  font-family:"Playfair Display",serif;
+  font-size:26px;
+  margin-top:5px;
+}
+
+/* SECTION */
+
+.section{
+  padding:65px 0;
+  border-top:1px solid var(--line);
+}
+
+.sectionHeader{
+  display:grid;
+  grid-template-columns:1fr 2fr;
+  gap:30px;
+  margin-bottom:35px;
+}
+
+.sectionHeader h2{
+  font-family:"Playfair Display",serif;
+  font-size:42px;
+  font-weight:400;
+  line-height:1.05;
+}
+
+.sectionHeader p{
+  color:var(--muted);
+  max-width:560px;
+}
+
+/* INFORMATION */
+
+.infoGrid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  border-top:1px solid var(--line);
+}
+
+.info{
+  padding:25px 10px 25px 0;
+  border-bottom:1px solid var(--line);
+}
+
+.info:nth-child(even){
+  padding-left:25px;
+  border-left:1px solid var(--line);
+}
+
+.infoLabel{
+  color:var(--gold);
+  text-transform:uppercase;
+  letter-spacing:1.5px;
+  font-size:10px;
+  margin-bottom:7px;
+}
+
+.info h3{
+  font-family:"Playfair Display",serif;
+  font-weight:400;
+  font-size:23px;
+}
+
+.info p{
+  color:var(--muted);
+  font-size:14px;
+  margin-top:7px;
+}
+
+/* WIFI */
+
+.wifi{
+  margin-top:30px;
+  background:var(--white);
+  color:#111;
+  padding:35px;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:30px;
+}
+
+.wifi h3{
+  font-family:"Playfair Display",serif;
+  font-size:30px;
+  font-weight:400;
+}
+
+.wifi p{
+  color:#626762;
+  margin-top:8px;
+}
+
+.wifiData{
+  border-left:1px solid #ddd9cf;
+  padding-left:30px;
+}
+
+.data{
+  margin-bottom:15px;
+}
+
+.data span{
+  display:block;
+  text-transform:uppercase;
+  letter-spacing:1.5px;
+  font-size:9px;
+  color:#8c8069;
+}
+
+.data strong{
+  font-size:15px;
+}
+
+/* SERVICE LIST */
+
+.services{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  border-top:1px solid var(--line);
+}
+
+.service{
+  padding:22px 15px 22px 0;
+  border-bottom:1px solid var(--line);
+  color:#d7d9d7;
+  font-size:14px;
+}
+
+/* TRANSPORT IMAGE */
+
+.transportHero{
+  min-height:460px;
+  background:
+  linear-gradient(90deg,rgba(7,10,9,.93),rgba(7,10,9,.25)),
+  url("https://images.unsplash.com/photo-1539037116277-4db20889f2d4?auto=format&fit=crop&w=1800&q=90")
+  center/cover;
+  display:flex;
+  align-items:center;
+  margin:50px 0;
+}
+
+.transportContent{
+  max-width:1050px;
+  width:100%;
+  margin:auto;
+  padding:50px 20px;
+}
+
+.transportContent h2{
+  font-family:"Playfair Display",serif;
+  font-size:clamp(40px,7vw,65px);
+  font-weight:400;
+  max-width:600px;
+  line-height:1;
+}
+
+.transportContent p{
+  color:#d4d7d4;
+  max-width:500px;
+  margin-top:20px;
+}
+
+.button{
+  display:inline-block;
+  margin-top:22px;
+  border:1px solid var(--gold);
+  color:var(--gold-light);
+  padding:12px 19px;
+  font-size:11px;
+  letter-spacing:1.4px;
+  text-transform:uppercase;
+  transition:.2s;
+}
+
+.button:hover{
+  background:var(--gold);
+  color:#111;
+}
+
+/* PLACES */
+
+.places{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:12px;
+  margin-top:30px;
+}
+
+.place{
+  background:var(--dark2);
+  min-height:180px;
+  padding:22px;
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-end;
+  border:1px solid var(--line);
+  transition:.2s;
+}
+
+.place:hover{
+  border-color:var(--gold);
+}
+
+.place span{
+  color:var(--gold);
+  font-size:10px;
+  letter-spacing:1.5px;
+  text-transform:uppercase;
+}
+
+.place strong{
+  font-family:"Playfair Display",serif;
+  font-size:22px;
+  font-weight:400;
+  margin-top:5px;
+}
+
+/* FAQ */
+
+details{
+  border-bottom:1px solid var(--line);
+  padding:22px 0;
+}
+
+summary{
+  cursor:pointer;
+  list-style:none;
+  font-family:"Playfair Display",serif;
+  font-size:20px;
+}
+
+summary::after{
+  content:"+";
+  float:right;
+  color:var(--gold);
+  font-family:"DM Sans",sans-serif;
+}
+
+details[open] summary::after{
+  content:"−";
+}
+
+details p{
+  color:var(--muted);
+  max-width:650px;
+  margin-top:14px;
+  font-size:14px;
+}
+
+/* CONTACT */
+
+.contact{
+  background:var(--gold);
+  color:#111;
+  padding:55px;
+  margin:65px 0;
+}
+
+.contact small{
+  text-transform:uppercase;
+  letter-spacing:2px;
+}
+
+.contact h2{
+  font-family:"Playfair Display",serif;
+  font-size:42px;
+  font-weight:400;
+  margin:8px 0 15px;
+}
+
+.contactActions{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  margin-top:25px;
+}
+
+.contactBtn{
+  border:1px solid rgba(0,0,0,.5);
+  padding:12px 18px;
+  text-transform:uppercase;
+  font-size:11px;
+  letter-spacing:1px;
+}
+
+/* REVIEW */
+
+.review{
+  text-align:center;
+  padding:70px 20px;
+}
+
+.review h2{
+  font-family:"Playfair Display",serif;
+  font-size:45px;
+  font-weight:400;
+}
+
+.review p{
+  color:var(--muted);
+  margin:15px auto;
+  max-width:500px;
+}
+
+.reviewStars{
+  color:var(--gold);
+  font-size:23px;
+  letter-spacing:8px;
+  margin:20px 0;
+}
+
+/* FOOTER */
+
+footer{
+  border-top:1px solid var(--line);
+  padding:45px 20px 110px;
+  text-align:center;
+  color:#737b77;
+  font-size:11px;
+}
+
+footer strong{
+  color:var(--gold);
+  letter-spacing:2px;
+}
+
+/* MOBILE NAV */
+
+.mobileNav{
+  position:fixed;
+  z-index:100;
+  bottom:0;
+  left:0;
+  right:0;
+  height:72px;
+  background:rgba(9,12,11,.94);
+  backdrop-filter:blur(16px);
+  border-top:1px solid var(--line);
+  display:flex;
+  justify-content:space-around;
+  align-items:center;
+}
+
+.navItem{
+  text-align:center;
+  color:#8f9692;
+  font-size:9px;
+  text-transform:uppercase;
+  letter-spacing:.6px;
+}
+
+.navIcon{
+  width:18px;
+  height:18px;
+  margin:0 auto 5px;
+  stroke:currentColor;
+  fill:none;
+  stroke-width:1.5;
+}
+
+.navItem:hover{
+  color:var(--gold);
+}
+
+@media(max-width:700px){
+
+  .hero{
+    min-height:85vh;
+  }
+
+  .features{
+    grid-template-columns:1fr;
+  }
+
+  .feature{
+    min-height:250px;
+  }
+
+  .sectionHeader{
+    grid-template-columns:1fr;
+  }
+
+  .sectionHeader h2{
+    font-size:35px;
+  }
+
+  .infoGrid{
+    grid-template-columns:1fr;
+  }
+
+  .info:nth-child(even){
+    padding-left:0;
+    border-left:0;
+  }
+
+  .wifi{
+    grid-template-columns:1fr;
+    padding:25px;
+  }
+
+  .wifiData{
+    border-left:0;
+    border-top:1px solid #ddd9cf;
+    padding-left:0;
+    padding-top:20px;
+  }
+
+  .services{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .places{
+    grid-template-columns:1fr;
+  }
+
+  .contact{
+    padding:35px 25px;
+  }
+}
+
+[dir="rtl"]{
+  text-align:right;
+}
+</style>
 </head>
 
 <body>
 
-<header class="hero">
-  <div class="topbar">
-    <div class="demo-badge" data-i18n="demo">DEMO · NEXORA GUEST HUB</div>
+<header class="hero" id="home">
 
-    <select id="language" class="language-select" onchange="changeLanguage(this.value)">
-      <option value="es">🇪🇸 Español</option>
-      <option value="en">🇬🇧 English</option>
-      <option value="fr">🇫🇷 Français</option>
-      <option value="de">🇩🇪 Deutsch</option>
-      <option value="it">🇮🇹 Italiano</option>
-      <option value="pt">🇵🇹 Português</option>
-      <option value="pl">🇵🇱 Polski</option>
-      <option value="ar">🇸🇦 العربية</option>
-    </select>
-  </div>
+<div class="top">
 
-  <div class="hero-content">
-    <div class="hotel-small">SANT BOI DE LLOBREGAT · BARCELONA</div>
-    <h1>Hostal Rambla</h1>
-    <p data-i18n="welcome">
-      Bienvenido. Toda la información que necesitas durante tu estancia,
-      en un solo lugar.
-    </p>
-  </div>
+<div class="brand">
+HOSTAL RAMBLA
+<span class="demo"> · GUEST HUB</span>
+</div>
+
+<select class="language" id="language" onchange="changeLanguage(this.value)">
+<option value="es">ES · Español</option>
+<option value="en">EN · English</option>
+<option value="fr">FR · Français</option>
+<option value="de">DE · Deutsch</option>
+<option value="it">IT · Italiano</option>
+<option value="pt">PT · Português</option>
+<option value="pl">PL · Polski</option>
+<option value="ar">AR · العربية</option>
+</select>
+
+</div>
+
+<div class="heroContent">
+
+<div class="location">
+SANT BOI DE LLOBREGAT · BARCELONA
+</div>
+
+<h1>Hostal<br>Rambla</h1>
+
+<p class="heroText" data-t="welcome">
+Todo lo que necesitas durante tu estancia,
+reunido en un único lugar.
+</p>
+
+<a href="#stay" class="scroll">
+<span class="scrollLine"></span>
+<span data-t="discoverHub">Descubre tu Guest Hub</span>
+</a>
+
+</div>
 </header>
 
-<div class="quick">
-  <div class="quick-grid">
-    <button class="quick-btn" onclick="goTo('wifi')">
-      <span class="quick-icon">📶</span>
-      <span class="quick-label" data-i18n="wifi">Wi-Fi</span>
-    </button>
-
-    <button class="quick-btn" onclick="goTo('transport')">
-      <span class="quick-icon">✈️</span>
-      <span class="quick-label" data-i18n="transport">Transporte</span>
-    </button>
-
-    <button class="quick-btn" onclick="goTo('contact')">
-      <span class="quick-icon">🛎️</span>
-      <span class="quick-label" data-i18n="reception">Recepción</span>
-    </button>
-
-    <button class="quick-btn" onclick="goTo('review')">
-      <span class="quick-icon">⭐</span>
-      <span class="quick-label" data-i18n="reviews">Reseñas</span>
-    </button>
-  </div>
-</div>
 
 <main>
 
-  <div class="demo-warning" data-i18n="demoWarning">
-    Esta es una demostración de Nexora Guest Hub creada a partir de información
-    pública. La versión definitiva sería revisada y validada por el alojamiento.
-  </div>
+<div class="container">
 
-  <!-- WIFI -->
-  <section id="wifi">
-    <div class="section-title">
-      <span data-i18n="yourStay">TU ESTANCIA</span>
-      <h2 data-i18n="wifiTitle">Wi-Fi</h2>
-    </div>
+<section class="intro" id="stay">
 
-    <div class="card wifi-box">
-      <h3>📶 <span data-i18n="freeWifi">Wi-Fi gratuito</span></h3>
-      <p data-i18n="wifiDesc">
-        El alojamiento dispone de conexión Wi-Fi gratuita para sus huéspedes.
-      </p>
+<span class="eyebrow" data-t="yourStay">Tu estancia</span>
 
-      <div class="wifi-data">
-        <div class="wifi-line">
-          <span data-i18n="network">Red</span>
-          <strong data-i18n="askReception">Consultar recepción</strong>
-        </div>
+<h2 class="title" data-t="everything">
+Todo lo que necesitas.<br>Cuando lo necesitas.
+</h2>
 
-        <div class="wifi-line">
-          <span data-i18n="password">Contraseña</span>
-          <strong data-i18n="askReception">Consultar recepción</strong>
-        </div>
-      </div>
+<p class="subtitle" data-t="intro">
+Información del alojamiento, servicios, transporte y recomendaciones
+para disfrutar de tu estancia en Sant Boi y Barcelona.
+</p>
 
-      <p class="small-note" data-i18n="wifiDemo">
-        En la versión definitiva aparecerían aquí la red y contraseña reales.
-      </p>
-    </div>
-  </section>
+</section>
 
-  <!-- HORARIOS -->
-  <section>
-    <div class="section-title">
-      <span data-i18n="usefulInfo">INFORMACIÓN ÚTIL</span>
-      <h2 data-i18n="schedule">Horarios</h2>
-    </div>
 
-    <div class="two-cols">
+<div class="features">
 
-      <div class="card">
-        <div class="info-row">
-          <div class="circle">🔑</div>
-          <div>
-            <h3>Check-in</h3>
-            <p data-i18n="checkin">
-              Lunes–jueves: 12:00–13:00 y 15:30–22:00.<br>
-              Viernes, fines de semana y festivos: 12:00–13:30 y 16:30–22:00.
-            </p>
-          </div>
-        </div>
-      </div>
+<a href="#information" class="feature">
 
-      <div class="card">
-        <div class="info-row">
-          <div class="circle">🧳</div>
-          <div>
-            <h3>Check-out</h3>
-            <p data-i18n="checkout">Hasta las 12:00.</p>
-          </div>
-        </div>
-      </div>
+<img src="https://images.unsplash.com/photo-1618773928121-c32242e63f39?auto=format&fit=crop&w=900&q=85">
 
-      <div class="card">
-        <div class="info-row">
-          <div class="circle">🛎️</div>
-          <div>
-            <h3 data-i18n="reception">Recepción</h3>
-            <p data-i18n="receptionHours">
-              Lunes–jueves: 10:00–13:00 y 15:30–22:00.<br>
-              Viernes, fines de semana y festivos: 10:00–13:30 y 16:30–22:00.
-            </p>
-          </div>
-        </div>
-      </div>
+<div class="featureContent">
+<div class="featureSmall" data-t="stay">Estancia</div>
+<div class="featureTitle" data-t="room">Tu habitación</div>
+</div>
 
-      <div class="card">
-        <div class="info-row">
-          <div class="circle">🌙</div>
-          <div>
-            <h3 data-i18n="lateArrival">Llegada fuera de horario</h3>
-            <p data-i18n="lateArrivalText">
-              Contacta previamente con el alojamiento. En casos excepcionales
-              pueden coordinar la entrega de la llave mediante cajón de seguridad.
-            </p>
-          </div>
-        </div>
-      </div>
+</a>
 
-    </div>
-  </section>
 
-  <!-- HABITACIÓN -->
-  <section>
-    <div class="section-title">
-      <span data-i18n="comfort">COMODIDAD</span>
-      <h2 data-i18n="roomServices">Habitación y servicios</h2>
-    </div>
+<a href="#transport" class="feature">
 
-    <div class="card">
-      <h3 data-i18n="everythingNeeded">Todo lo necesario durante tu estancia</h3>
+<img src="https://images.unsplash.com/photo-1543783207-ec64e4d95325?auto=format&fit=crop&w=900&q=85">
 
-      <div class="tags">
-        <span class="tag">🚿 <span data-i18n="privateBathroom">Baño privado</span></span>
-        <span class="tag">📶 Wi-Fi</span>
-        <span class="tag">📺 Smart TV</span>
-        <span class="tag">❄️ <span data-i18n="air">Aire acondicionado</span></span>
-        <span class="tag">🔥 <span data-i18n="heating">Calefacción</span></span>
-        <span class="tag">🔐 <span data-i18n="safe">Caja fuerte</span></span>
-        <span class="tag">🧴 <span data-i18n="toiletries">Artículos de aseo</span></span>
-        <span class="tag">💨 <span data-i18n="dryer">Secador</span></span>
-        <span class="tag">🧹 <span data-i18n="cleaning">Limpieza diaria</span></span>
-        <span class="tag">🛗 <span data-i18n="lift">Ascensor</span></span>
-      </div>
-    </div>
+<div class="featureContent">
+<div class="featureSmall" data-t="move">Muévete</div>
+<div class="featureTitle" data-t="transport">Transporte</div>
+</div>
 
-    <div class="two-cols">
-      <div class="card">
-        <h3>🧳 <span data-i18n="luggage">Consigna de equipaje</span></h3>
-        <p data-i18n="luggageText">
-          Puedes dejar tu equipaje antes del check-in o después del check-out.
-          Consulta disponibilidad en recepción.
-        </p>
-      </div>
+</a>
 
-      <div class="card">
-        <h3>☕ <span data-i18n="breakfast">Desayuno</span></h3>
-        <p data-i18n="breakfastText">
-          El desayuno no está incluido. Encontrarás bares y cafeterías muy cerca del alojamiento.
-        </p>
-      </div>
-    </div>
-  </section>
 
-  <!-- NORMAS -->
-  <section>
-    <div class="section-title">
-      <span data-i18n="important">IMPORTANTE</span>
-      <h2 data-i18n="rules">Normas del alojamiento</h2>
-    </div>
+<a href="#explore" class="feature">
 
-    <div class="two-cols">
-      <div class="card">
-        <h3>🚭 <span data-i18n="noSmoking">Espacio sin humo</span></h3>
-        <p data-i18n="noSmokingText">
-          No está permitido fumar en las habitaciones, incluidos cigarrillos
-          electrónicos y dispositivos similares.
-        </p>
-      </div>
+<img src="https://images.unsplash.com/photo-1583422409516-2895a77efded?auto=format&fit=crop&w=900&q=85">
 
-      <div class="card">
-        <h3>🐕 <span data-i18n="pets">Mascotas</span></h3>
-        <p data-i18n="petsText">No se admiten mascotas.</p>
-      </div>
+<div class="featureContent">
+<div class="featureSmall" data-t="discover">Descubre</div>
+<div class="featureTitle">Sant Boi & Barcelona</div>
+</div>
 
-      <div class="card">
-        <h3>🪪 <span data-i18n="identification">Identificación</span></h3>
-        <p data-i18n="identificationText">
-          Para realizar el check-in es necesario presentar documentación válida.
-        </p>
-      </div>
+</a>
 
-      <div class="card">
-        <h3>👶 <span data-i18n="children">Niños y cunas</span></h3>
-        <p data-i18n="childrenText">
-          Cuna y cama adicional bajo petición y sujetas a disponibilidad.
-        </p>
-      </div>
-    </div>
-  </section>
+</div>
 
-  <!-- TRANSPORTE -->
-  <section id="transport">
-    <div class="section-title">
-      <span data-i18n="moveAround">MUÉVETE FÁCILMENTE</span>
-      <h2 data-i18n="transportTitle">Transporte</h2>
-    </div>
 
-    <div class="transport">
+<section class="section" id="information">
 
-      <div class="card">
-        <div class="big-icon">✈️</div>
-        <h3 data-i18n="airport">Aeropuerto Barcelona-El Prat</h3>
-        <p data-i18n="airportText">
-          Autobús L77 desde T1/T2 hasta Sant Boi. También puedes desplazarte en taxi,
-          VTC o coche.
-        </p>
-        <a class="action"
-           target="_blank"
-           href="https://www.google.com/maps/search/?api=1&query=Barcelona+El+Prat+Airport">
-          📍 <span data-i18n="openMaps">Abrir Maps</span>
-        </a>
-      </div>
+<div class="sectionHeader">
 
-      <div class="card">
-        <div class="big-icon">🚆</div>
-        <h3>Barcelona</h3>
-        <p data-i18n="barcelonaText">
-          La estación FGC Sant Boi está a pocos minutos a pie. Plaça Espanya se encuentra
-          aproximadamente a 18 minutos en tren.
-        </p>
-        <a class="action"
-           target="_blank"
-           href="https://www.google.com/maps/search/?api=1&query=FGC+Sant+Boi">
-          🚆 <span data-i18n="station">Ver estación</span>
-        </a>
-      </div>
+<div>
+<span class="eyebrow" data-t="useful">Información útil</span>
+<h2 data-t="arrival">Tu llegada</h2>
+</div>
 
-      <div class="card">
-        <div class="big-icon">🏢</div>
-        <h3>Fira Barcelona</h3>
-        <p data-i18n="firaText">
-          Conexión en FGC hasta Europa | Fira, ideal para huéspedes que visitan
-          congresos, ferias y eventos.
-        </p>
-        <a class="action"
-           target="_blank"
-           href="https://www.google.com/maps/search/?api=1&query=Fira+Barcelona+Gran+Via">
-          📍 <span data-i18n="route">Ver ruta</span>
-        </a>
-      </div>
+<p data-t="arrivalText">
+Consulta los horarios principales y la información necesaria
+para tu llegada y salida del alojamiento.
+</p>
 
-    </div>
+</div>
 
-    <div class="card">
-      <div class="info-row">
-        <div class="circle">🚗</div>
-        <div>
-          <h3 data-i18n="parking">Parking</h3>
-          <p data-i18n="parkingText">
-            El alojamiento no dispone de parking propio. Existe parking público
-            gratuito junto a la estación FGC de Sant Boi, según la información
-            publicada por el establecimiento.
-          </p>
 
-          <a class="action light"
-             target="_blank"
-             href="https://www.google.com/maps/search/?api=1&query=Estacio+FGC+Sant+Boi">
-            📍 <span data-i18n="findParking">Localizar parking</span>
-          </a>
-        </div>
-      </div>
-    </div>
+<div class="infoGrid">
 
-    <div class="card">
-      <h3>🌙 <span data-i18n="nightBus">Transporte nocturno</span></h3>
-      <p data-i18n="nightBusText">
-        Sant Boi dispone de conexiones nocturnas con Barcelona mediante NitBus.
-      </p>
-      <div class="tags">
-        <span class="tag">N13</span>
-        <span class="tag">N14</span>
-        <span class="tag">N20</span>
-      </div>
-    </div>
-  </section>
+<div class="info">
+<div class="infoLabel">Check-in</div>
+<h3>12:00 — 22:00</h3>
+<p data-t="checkin">
+Lunes a jueves: 12:00–13:00 y 15:30–22:00.
+Viernes, fines de semana y festivos: 12:00–13:30 y 16:30–22:00.
+</p>
+</div>
 
-  <!-- DESCUBRE -->
-  <section>
-    <div class="section-title">
-      <span data-i18n="discover">DESCUBRE EL ENTORNO</span>
-      <h2 data-i18n="santBoi">Qué visitar en Sant Boi</h2>
-    </div>
 
-    <div class="place-list">
+<div class="info">
+<div class="infoLabel">Check-out</div>
+<h3 data-t="before12">Hasta las 12:00</h3>
+<p data-t="checkout">
+Consulta con recepción si necesitas dejar tu equipaje después de la salida.
+</p>
+</div>
 
-      <a class="place" target="_blank"
-         href="https://www.google.com/maps/search/?api=1&query=Termes+Romanes+Sant+Boi">
-        <strong>🏛️ Termes Romanes</strong>
-        <span data-i18n="mapsTap">Toca para abrir en Maps →</span>
-      </a>
 
-      <a class="place" target="_blank"
-         href="https://www.google.com/maps/search/?api=1&query=Esglesia+Sant+Baldiri+Sant+Boi">
-        <strong>⛪ Sant Baldiri</strong>
-        <span data-i18n="mapsTap">Toca para abrir en Maps →</span>
-      </a>
+<div class="info">
+<div class="infoLabel" data-t="reception">Recepción</div>
+<h3>10:00 — 22:00</h3>
+<p data-t="receptionHours">
+Horario partido. Consulta con recepción para cualquier necesidad durante tu estancia.
+</p>
+</div>
 
-      <a class="place" target="_blank"
-         href="https://www.google.com/maps/search/?api=1&query=Museu+Sant+Boi">
-        <strong>🏺 Museu de Sant Boi</strong>
-        <span data-i18n="mapsTap">Toca para abrir en Maps →</span>
-      </a>
 
-      <a class="place" target="_blank"
-         href="https://www.google.com/maps/search/?api=1&query=Ermita+Sant+Ramon+Sant+Boi">
-        <strong>🌄 Ermita de Sant Ramon</strong>
-        <span data-i18n="mapsTap">Toca para abrir en Maps →</span>
-      </a>
+<div class="info">
+<div class="infoLabel" data-t="late">Llegadas tardías</div>
+<h3 data-t="contactBefore">Contacta previamente</h3>
+<p data-t="lateText">
+En determinadas situaciones puede coordinarse la recogida de llaves mediante cajón de seguridad.
+</p>
+</div>
 
-      <a class="place" target="_blank"
-         href="https://www.google.com/maps/search/?api=1&query=Parc+Muntanyeta+Sant+Boi">
-        <strong>🌳 Parc de la Muntanyeta</strong>
-        <span data-i18n="mapsTap">Toca para abrir en Maps →</span>
-      </a>
+</div>
 
-      <a class="place" target="_blank"
-         href="https://www.google.com/maps/search/?api=1&query=Rambla+Rafael+Casanova+Sant+Boi">
-        <strong>🚶 Rambla Rafael Casanova</strong>
-        <span data-i18n="mapsTap">Toca para abrir en Maps →</span>
-      </a>
 
-    </div>
-  </section>
+<div class="wifi">
 
-  <!-- CERCA -->
-  <section>
-    <div class="section-title">
-      <span data-i18n="nearby">CERCA DE TI</span>
-      <h2 data-i18n="needSomething">¿Necesitas algo?</h2>
-    </div>
+<div>
+<span class="eyebrow">Wi-Fi</span>
+<h3 data-t="wifiTitle">Conéctate durante tu estancia</h3>
+<p data-t="wifiText">
+El alojamiento dispone de conexión Wi-Fi gratuita para huéspedes.
+</p>
+</div>
 
-    <div class="two-cols">
+<div class="wifiData">
 
-      <a class="card"
-         target="_blank"
-         href="https://www.google.com/maps/search/restaurants+near+Rambla+Rafael+Casanova+9+Sant+Boi">
-        <h3>🍽️ <span data-i18n="restaurants">Restaurantes</span></h3>
-        <p data-i18n="restaurantsText">Encuentra opciones para comer cerca del alojamiento.</p>
-      </a>
+<div class="data">
+<span data-t="network">Red</span>
+<strong data-t="receptionAsk">Consultar en recepción</strong>
+</div>
 
-      <a class="card"
-         target="_blank"
-         href="https://www.google.com/maps/search/cafes+near+Rambla+Rafael+Casanova+9+Sant+Boi">
-        <h3>☕ <span data-i18n="cafes">Cafeterías</span></h3>
-        <p data-i18n="cafesText">Cafeterías y lugares para desayunar cerca.</p>
-      </a>
+<div class="data">
+<span data-t="password">Contraseña</span>
+<strong data-t="receptionAsk">Consultar en recepción</strong>
+</div>
 
-      <a class="card"
-         target="_blank"
-         href="https://www.google.com/maps/search/supermarkets+near+Rambla+Rafael+Casanova+9+Sant+Boi">
-        <h3>🛒 <span data-i18n="supermarkets">Supermercados</span></h3>
-        <p data-i18n="openNearby">Abrir opciones cercanas en Maps.</p>
-      </a>
+</div>
 
-      <a class="card"
-         target="_blank"
-         href="https://www.google.com/maps/search/pharmacy+near+Rambla+Rafael+Casanova+9+Sant+Boi">
-        <h3>💊 <span data-i18n="pharmacies">Farmacias</span></h3>
-        <p data-i18n="openNearby">Abrir opciones cercanas en Maps.</p>
-      </a>
+</div>
 
-    </div>
-  </section>
+</section>
 
-  <!-- CONTACTO -->
-  <section id="contact">
-    <div class="section-title">
-      <span data-i18n="help">¿NECESITAS AYUDA?</span>
-      <h2 data-i18n="contact">Contacto y recepción</h2>
-    </div>
 
-    <div class="card">
-      <h3>Hostal Rambla</h3>
+<section class="section">
 
-      <p>
-        📍 Rambla Rafael Casanova, 9<br>
-        08830 Sant Boi de Llobregat · Barcelona
-      </p>
+<div class="sectionHeader">
 
-      <div class="contact-buttons">
-        <a class="action" href="tel:+34936400397">
-          📞 <span data-i18n="call">Llamar</span>
-        </a>
+<div>
+<span class="eyebrow" data-t="comfort">Comodidad</span>
+<h2 data-t="services">Servicios</h2>
+</div>
 
-        <a class="action light"
-           href="mailto:info@hostalramblasantboi.com">
-          ✉️ Email
-        </a>
+<p data-t="servicesText">
+Servicios disponibles para hacer tu estancia más cómoda.
+</p>
 
-        <a class="action light"
-           target="_blank"
-           href="https://www.google.com/maps/search/?api=1&query=Hostal+Rambla+Sant+Boi">
-          📍 Maps
-        </a>
-      </div>
-    </div>
-  </section>
+</div>
 
-  <!-- FAQ -->
-  <section>
-    <div class="section-title">
-      <span>FAQ</span>
-      <h2 data-i18n="faq">Preguntas frecuentes</h2>
-    </div>
 
-    <details>
-      <summary data-i18n="faqWifi">¿Hay Wi-Fi?</summary>
-      <p data-i18n="faqWifiA">Sí, el alojamiento ofrece Wi-Fi gratuito.</p>
-    </details>
+<div class="services">
 
-    <details>
-      <summary data-i18n="faqBreakfast">¿Está incluido el desayuno?</summary>
-      <p data-i18n="faqBreakfastA">
-        No. Hay bares y cafeterías a pocos minutos del alojamiento.
-      </p>
-    </details>
+<div class="service" data-t="privateBath">Baño privado</div>
+<div class="service">Wi-Fi</div>
+<div class="service">Smart TV</div>
+<div class="service" data-t="air">Aire acondicionado</div>
+<div class="service" data-t="heating">Calefacción</div>
+<div class="service" data-t="safe">Caja fuerte</div>
+<div class="service" data-t="toiletries">Artículos de aseo</div>
+<div class="service" data-t="hairdryer">Secador</div>
+<div class="service" data-t="cleaning">Limpieza diaria</div>
+<div class="service" data-t="lift">Ascensor</div>
+<div class="service" data-t="luggage">Consigna de equipaje</div>
+<div class="service" data-t="iron">Plancha bajo petición</div>
 
-    <details>
-      <summary data-i18n="faqLuggage">¿Puedo dejar las maletas?</summary>
-      <p data-i18n="faqLuggageA">
-        Sí. Consulta en recepción la disponibilidad de la consigna.
-      </p>
-    </details>
+</div>
 
-    <details>
-      <summary data-i18n="faqPets">¿Se admiten mascotas?</summary>
-      <p data-i18n="faqPetsA">No se admiten mascotas.</p>
-    </details>
+</section>
 
-    <details>
-      <summary data-i18n="faqAirport">¿Cómo puedo ir al aeropuerto?</summary>
-      <p data-i18n="faqAirportA">
-        Puedes utilizar el autobús L77, taxi, VTC o vehículo privado.
-      </p>
-    </details>
 
-    <details>
-      <summary data-i18n="faqLate">¿Qué hago si llego tarde?</summary>
-      <p data-i18n="faqLateA">
-        Contacta previamente con el alojamiento para coordinar tu llegada.
-      </p>
-    </details>
-  </section>
+<section class="section">
 
-  <!-- REVIEW -->
-  <section id="review">
-    <div class="review">
-      <div style="font-size:35px;">💛</div>
-      <h2 data-i18n="enjoyed">¿Has disfrutado de tu estancia?</h2>
-      <div class="stars">★★★★★</div>
-      <p data-i18n="reviewText">
-        Tu opinión ayuda al alojamiento y también a futuros huéspedes.
-      </p>
+<div class="sectionHeader">
 
-      <a class="action gold"
-         target="_blank"
-         href="https://www.google.com/search?q=Hostal+Rambla+Sant+Boi+opiniones">
-        ⭐ <span data-i18n="leaveReview">Dejar una reseña</span>
-      </a>
-    </div>
-  </section>
+<div>
+<span class="eyebrow" data-t="important">Información importante</span>
+<h2 data-t="rules">Durante tu estancia</h2>
+</div>
+
+<p data-t="rulesIntro">
+Algunas indicaciones importantes para garantizar una estancia cómoda.
+</p>
+
+</div>
+
+
+<div class="infoGrid">
+
+<div class="info">
+<div class="infoLabel" data-t="smoking">Tabaco</div>
+<h3 data-t="smokeFree">Alojamiento sin humo</h3>
+<p data-t="smokingText">
+No está permitido fumar en las habitaciones, incluidos cigarrillos electrónicos.
+</p>
+</div>
+
+<div class="info">
+<div class="infoLabel" data-t="pets">Mascotas</div>
+<h3 data-t="notAllowed">No admitidas</h3>
+<p data-t="petsText">
+El establecimiento no admite mascotas.
+</p>
+</div>
+
+<div class="info">
+<div class="infoLabel" data-t="luggage">Equipaje</div>
+<h3 data-t="storage">Servicio de consigna</h3>
+<p data-t="storageText">
+Disponible antes del check-in o después del check-out. Consulta en recepción.
+</p>
+</div>
+
+<div class="info">
+<div class="infoLabel" data-t="breakfast">Desayuno</div>
+<h3 data-t="notIncluded">No incluido</h3>
+<p data-t="breakfastText">
+Encontrarás cafeterías y establecimientos para desayunar cerca del hostal.
+</p>
+</div>
+
+</div>
+
+</section>
+
+</div>
+
+
+<section class="transportHero" id="transport">
+
+<div class="transportContent">
+
+<span class="eyebrow" data-t="connected">Bien conectado</span>
+
+<h2 data-t="airportHeading">
+Aeropuerto, Barcelona y Fira.
+</h2>
+
+<p data-t="transportIntro">
+Sant Boi permite acceder fácilmente al aeropuerto y al centro de Barcelona
+mediante transporte público.
+</p>
+
+<a target="_blank"
+class="button"
+href="https://www.google.com/maps/search/?api=1&query=FGC+Sant+Boi"
+data-t="openStation">
+Abrir estación FGC
+</a>
+
+</div>
+
+</section>
+
+
+<div class="container">
+
+<section class="section">
+
+<div class="infoGrid">
+
+<div class="info">
+<div class="infoLabel" data-t="airport">Aeropuerto</div>
+<h3>Barcelona-El Prat</h3>
+<p data-t="airportInfo">
+Conexión mediante autobús L77 desde T1 y T2 hasta Sant Boi.
+También puedes desplazarte en taxi, VTC o vehículo privado.
+</p>
+</div>
+
+
+<div class="info">
+<div class="infoLabel">Barcelona</div>
+<h3>Plaça Espanya</h3>
+<p data-t="barcelonaInfo">
+Desde la estación FGC Sant Boi puedes llegar a Plaça Espanya
+en aproximadamente 18 minutos.
+</p>
+</div>
+
+
+<div class="info">
+<div class="infoLabel">Fira Barcelona</div>
+<h3>Europa | Fira</h3>
+<p data-t="firaInfo">
+Conexión mediante FGC, especialmente cómoda para congresos,
+ferias y eventos profesionales.
+</p>
+</div>
+
+
+<div class="info">
+<div class="infoLabel" data-t="parking">Parking</div>
+<h3 data-t="publicParking">Parking público</h3>
+<p data-t="parkingInfo">
+El hostal no dispone de parking propio. Según la información publicada,
+existe aparcamiento público gratuito junto a la estación FGC.
+</p>
+</div>
+
+</div>
+
+</section>
+
+
+<section class="section" id="explore">
+
+<span class="eyebrow" data-t="explore">Explora</span>
+<h2 class="title" data-t="discoverSantBoi">
+Descubre Sant Boi.
+</h2>
+
+<div class="places">
+
+<a target="_blank"
+href="https://www.google.com/maps/search/?api=1&query=Termes+Romanes+Sant+Boi"
+class="place">
+<span data-t="culture">Cultura</span>
+<strong>Termes Romanes</strong>
+</a>
+
+
+<a target="_blank"
+href="https://www.google.com/maps/search/?api=1&query=Museu+Sant+Boi"
+class="place">
+<span data-t="culture">Cultura</span>
+<strong>Museu de Sant Boi</strong>
+</a>
+
+
+<a target="_blank"
+href="https://www.google.com/maps/search/?api=1&query=Ermita+Sant+Ramon+Sant+Boi"
+class="place">
+<span data-t="nature">Naturaleza</span>
+<strong>Ermita de Sant Ramon</strong>
+</a>
+
+
+<a target="_blank"
+href="https://www.google.com/maps/search/?api=1&query=Parc+Muntanyeta+Sant+Boi"
+class="place">
+<span data-t="nature">Naturaleza</span>
+<strong>Parc de la Muntanyeta</strong>
+</a>
+
+
+<a target="_blank"
+href="https://www.google.com/maps/search/restaurants+near+Rambla+Rafael+Casanova+9+Sant+Boi"
+class="place">
+<span data-t="gastronomy">Gastronomía</span>
+<strong data-t="restaurants">Restaurantes cercanos</strong>
+</a>
+
+
+<a target="_blank"
+href="https://www.google.com/maps/search/pharmacy+near+Rambla+Rafael+Casanova+9+Sant+Boi"
+class="place">
+<span data-t="useful">Información útil</span>
+<strong data-t="pharmacy">Farmacias cercanas</strong>
+</a>
+
+</div>
+
+</section>
+
+
+<section class="section">
+
+<span class="eyebrow">FAQ</span>
+<h2 class="title" data-t="questions">
+Preguntas frecuentes.
+</h2>
+
+<details>
+<summary data-t="qWifi">¿Hay Wi-Fi?</summary>
+<p data-t="aWifi">Sí. El alojamiento dispone de Wi-Fi gratuito para huéspedes.</p>
+</details>
+
+<details>
+<summary data-t="qBreakfast">¿Está incluido el desayuno?</summary>
+<p data-t="aBreakfast">No. Encontrarás cafeterías y bares cerca del alojamiento.</p>
+</details>
+
+<details>
+<summary data-t="qLuggage">¿Puedo dejar las maletas?</summary>
+<p data-t="aLuggage">Sí. Consulta en recepción la disponibilidad del servicio de consigna.</p>
+</details>
+
+<details>
+<summary data-t="qPets">¿Se admiten mascotas?</summary>
+<p data-t="aPets">No se admiten mascotas.</p>
+</details>
+
+<details>
+<summary data-t="qAirport">¿Cómo llego al aeropuerto?</summary>
+<p data-t="aAirport">Puedes utilizar el autobús L77, taxi, VTC o vehículo privado.</p>
+</details>
+
+<details>
+<summary data-t="qLate">¿Qué ocurre si llego fuera del horario?</summary>
+<p data-t="aLate">Contacta previamente con el alojamiento para coordinar tu llegada.</p>
+</details>
+
+</section>
+
+
+<section class="contact" id="contact">
+
+<small data-t="needHelp">¿Necesitas ayuda?</small>
+
+<h2 data-t="receptionContact">
+Contacta con recepción.
+</h2>
+
+<p>
+Hostal Rambla<br>
+Rambla Rafael Casanova, 9<br>
+08830 Sant Boi de Llobregat · Barcelona
+</p>
+
+<div class="contactActions">
+
+<a class="contactBtn" href="tel:+34936400397" data-t="call">
+Llamar
+</a>
+
+<a class="contactBtn"
+href="mailto:info@hostalramblasantboi.com">
+Email
+</a>
+
+<a class="contactBtn"
+target="_blank"
+href="https://www.google.com/maps/search/?api=1&query=Hostal+Rambla+Sant+Boi">
+Google Maps
+</a>
+
+</div>
+
+</section>
+
+
+<section class="review" id="review">
+
+<span class="eyebrow" data-t="yourOpinion">Tu opinión importa</span>
+
+<h2 data-t="enjoyed">
+¿Has disfrutado de tu estancia?
+</h2>
+
+<div class="reviewStars">★★★★★</div>
+
+<p data-t="reviewText">
+Compartir tu experiencia ayuda al alojamiento y a futuros huéspedes.
+</p>
+
+<a class="button"
+target="_blank"
+href="https://www.google.com/search?q=Hostal+Rambla+Sant+Boi+opiniones"
+data-t="leaveReview">
+Dejar una reseña
+</a>
+
+</section>
+
+</div>
 
 </main>
 
+
 <footer>
-  <strong>HOSTAL RAMBLA</strong>
-  <div data-i18n="demoFooter">Versión demostrativa</div>
-  <br>
-  <div>
-    Guest Hub desarrollado por
-    <strong class="nexora">NEXORA</strong>
-  </div>
+
+<div>
+HOSTAL RAMBLA · SANT BOI DE LLOBREGAT
+</div>
+
+<br>
+
+<div>
+DEMO · POWERED BY
+<strong>NEXORA GUEST HUB</strong>
+</div>
+
 </footer>
 
-<script>
-const translations = {
 
-es: {
-  demo:"DEMO · NEXORA GUEST HUB",
-  welcome:"Bienvenido. Toda la información que necesitas durante tu estancia, en un solo lugar.",
-  wifi:"Wi-Fi",
-  transport:"Transporte",
-  reception:"Recepción",
-  reviews:"Reseñas",
-  demoWarning:"Esta es una demostración de Nexora Guest Hub creada a partir de información pública. La versión definitiva sería revisada y validada por el alojamiento.",
-  yourStay:"TU ESTANCIA",
-  wifiTitle:"Wi-Fi",
-  freeWifi:"Wi-Fi gratuito",
-  wifiDesc:"El alojamiento dispone de conexión Wi-Fi gratuita para sus huéspedes.",
-  network:"Red",
-  password:"Contraseña",
-  askReception:"Consultar recepción",
-  wifiDemo:"En la versión definitiva aparecerían aquí la red y contraseña reales.",
-  usefulInfo:"INFORMACIÓN ÚTIL",
-  schedule:"Horarios",
-  checkin:"Lunes–jueves: 12:00–13:00 y 15:30–22:00.<br>Viernes, fines de semana y festivos: 12:00–13:30 y 16:30–22:00.",
-  checkout:"Hasta las 12:00.",
-  receptionHours:"Lunes–jueves: 10:00–13:00 y 15:30–22:00.<br>Viernes, fines de semana y festivos: 10:00–13:30 y 16:30–22:00.",
-  lateArrival:"Llegada fuera de horario",
-  lateArrivalText:"Contacta previamente con el alojamiento. En casos excepcionales pueden coordinar la entrega de la llave mediante cajón de seguridad.",
-  comfort:"COMODIDAD",
-  roomServices:"Habitación y servicios",
-  everythingNeeded:"Todo lo necesario durante tu estancia",
-  privateBathroom:"Baño privado",
-  air:"Aire acondicionado",
-  heating:"Calefacción",
-  safe:"Caja fuerte",
-  toiletries:"Artículos de aseo",
-  dryer:"Secador",
-  cleaning:"Limpieza diaria",
-  lift:"Ascensor",
-  luggage:"Consigna de equipaje",
-  luggageText:"Puedes dejar tu equipaje antes del check-in o después del check-out. Consulta disponibilidad en recepción.",
-  breakfast:"Desayuno",
-  breakfastText:"El desayuno no está incluido. Encontrarás bares y cafeterías muy cerca del alojamiento.",
-  important:"IMPORTANTE",
-  rules:"Normas del alojamiento",
-  noSmoking:"Espacio sin humo",
-  noSmokingText:"No está permitido fumar en las habitaciones, incluidos cigarrillos electrónicos y dispositivos similares.",
-  pets:"Mascotas",
-  petsText:"No se admiten mascotas.",
-  identification:"Identificación",
-  identificationText:"Para realizar el check-in es necesario presentar documentación válida.",
-  children:"Niños y cunas",
-  childrenText:"Cuna y cama adicional bajo petición y sujetas a disponibilidad.",
-  moveAround:"MUÉVETE FÁCILMENTE",
-  transportTitle:"Transporte",
-  airport:"Aeropuerto Barcelona-El Prat",
-  airportText:"Autobús L77 desde T1/T2 hasta Sant Boi. También puedes desplazarte en taxi, VTC o coche.",
-  openMaps:"Abrir Maps",
-  barcelonaText:"La estación FGC Sant Boi está a pocos minutos a pie. Plaça Espanya se encuentra aproximadamente a 18 minutos en tren.",
-  station:"Ver estación",
-  firaText:"Conexión en FGC hasta Europa | Fira, ideal para huéspedes que visitan congresos, ferias y eventos.",
-  route:"Ver ruta",
-  parking:"Parking",
-  parkingText:"El alojamiento no dispone de parking propio. Existe parking público gratuito junto a la estación FGC de Sant Boi, según la información publicada por el establecimiento.",
-  findParking:"Localizar parking",
-  nightBus:"Transporte nocturno",
-  nightBusText:"Sant Boi dispone de conexiones nocturnas con Barcelona mediante NitBus.",
-  discover:"DESCUBRE EL ENTORNO",
-  santBoi:"Qué visitar en Sant Boi",
-  mapsTap:"Toca para abrir en Maps →",
-  nearby:"CERCA DE TI",
-  needSomething:"¿Necesitas algo?",
-  restaurants:"Restaurantes",
-  restaurantsText:"Encuentra opciones para comer cerca del alojamiento.",
-  cafes:"Cafeterías",
-  cafesText:"Cafeterías y lugares para desayunar cerca.",
-  supermarkets:"Supermercados",
-  pharmacies:"Farmacias",
-  openNearby:"Abrir opciones cercanas en Maps.",
-  help:"¿NECESITAS AYUDA?",
-  contact:"Contacto y recepción",
-  call:"Llamar",
-  faq:"Preguntas frecuentes",
-  faqWifi:"¿Hay Wi-Fi?",
-  faqWifiA:"Sí, el alojamiento ofrece Wi-Fi gratuito.",
-  faqBreakfast:"¿Está incluido el desayuno?",
-  faqBreakfastA:"No. Hay bares y cafeterías a pocos minutos del alojamiento.",
-  faqLuggage:"¿Puedo dejar las maletas?",
-  faqLuggageA:"Sí. Consulta en recepción la disponibilidad de la consigna.",
-  faqPets:"¿Se admiten mascotas?",
-  faqPetsA:"No se admiten mascotas.",
-  faqAirport:"¿Cómo puedo ir al aeropuerto?",
-  faqAirportA:"Puedes utilizar el autobús L77, taxi, VTC o vehículo privado.",
-  faqLate:"¿Qué hago si llego tarde?",
-  faqLateA:"Contacta previamente con el alojamiento para coordinar tu llegada.",
-  enjoyed:"¿Has disfrutado de tu estancia?",
-  reviewText:"Tu opinión ayuda al alojamiento y también a futuros huéspedes.",
-  leaveReview:"Dejar una reseña",
-  demoFooter:"Versión demostrativa"
+<nav class="mobileNav">
+
+<a href="#home" class="navItem">
+
+<svg class="navIcon" viewBox="0 0 24 24">
+<path d="M3 11.5L12 4l9 7.5"/>
+<path d="M5 10v10h14V10"/>
+</svg>
+
+<span data-t="home">Inicio</span>
+</a>
+
+
+<a href="#information" class="navItem">
+
+<svg class="navIcon" viewBox="0 0 24 24">
+<rect x="4" y="3" width="16" height="18" rx="2"/>
+<path d="M8 7h8M8 11h8M8 15h5"/>
+</svg>
+
+<span data-t="stay">Estancia</span>
+</a>
+
+
+<a href="#transport" class="navItem">
+
+<svg class="navIcon" viewBox="0 0 24 24">
+<path d="M4 17h16"/>
+<path d="M6 17l2-9h8l2 9"/>
+<path d="M9 12h6"/>
+</svg>
+
+<span data-t="move">Moverse</span>
+</a>
+
+
+<a href="#explore" class="navItem">
+
+<svg class="navIcon" viewBox="0 0 24 24">
+<circle cx="12" cy="12" r="9"/>
+<path d="M15 9l-2 4-4 2 2-4z"/>
+</svg>
+
+<span data-t="explore">Explorar</span>
+</a>
+
+
+<a href="#contact" class="navItem">
+
+<svg class="navIcon" viewBox="0 0 24 24">
+<path d="M5 4h14v12H8l-3 3z"/>
+</svg>
+
+<span data-t="help">Ayuda</span>
+</a>
+
+</nav>
+
+
+<script>
+
+const translations={
+
+es:{
+welcome:"Todo lo que necesitas durante tu estancia, reunido en un único lugar.",
+discoverHub:"Descubre tu Guest Hub",
+yourStay:"Tu estancia",
+everything:"Todo lo que necesitas.<br>Cuando lo necesitas.",
+intro:"Información del alojamiento, servicios, transporte y recomendaciones para disfrutar de tu estancia en Sant Boi y Barcelona.",
+stay:"Estancia",
+room:"Tu habitación",
+move:"Muévete",
+transport:"Transporte",
+discover:"Descubre",
+useful:"Información útil",
+arrival:"Tu llegada",
+arrivalText:"Consulta los horarios principales y la información necesaria para tu llegada y salida del alojamiento.",
+checkin:"Lunes a jueves: 12:00–13:00 y 15:30–22:00. Viernes, fines de semana y festivos: 12:00–13:30 y 16:30–22:00.",
+before12:"Hasta las 12:00",
+checkout:"Consulta con recepción si necesitas dejar tu equipaje después de la salida.",
+reception:"Recepción",
+receptionHours:"Horario partido. Consulta con recepción para cualquier necesidad durante tu estancia.",
+late:"Llegadas tardías",
+contactBefore:"Contacta previamente",
+lateText:"En determinadas situaciones puede coordinarse la recogida de llaves mediante cajón de seguridad.",
+wifiTitle:"Conéctate durante tu estancia",
+wifiText:"El alojamiento dispone de conexión Wi-Fi gratuita para huéspedes.",
+network:"Red",
+password:"Contraseña",
+receptionAsk:"Consultar en recepción",
+comfort:"Comodidad",
+services:"Servicios",
+servicesText:"Servicios disponibles para hacer tu estancia más cómoda.",
+privateBath:"Baño privado",
+air:"Aire acondicionado",
+heating:"Calefacción",
+safe:"Caja fuerte",
+toiletries:"Artículos de aseo",
+hairdryer:"Secador",
+cleaning:"Limpieza diaria",
+lift:"Ascensor",
+luggage:"Consigna de equipaje",
+iron:"Plancha bajo petición",
+important:"Información importante",
+rules:"Durante tu estancia",
+rulesIntro:"Algunas indicaciones importantes para garantizar una estancia cómoda.",
+smoking:"Tabaco",
+smokeFree:"Alojamiento sin humo",
+smokingText:"No está permitido fumar en las habitaciones, incluidos cigarrillos electrónicos.",
+pets:"Mascotas",
+notAllowed:"No admitidas",
+petsText:"El establecimiento no admite mascotas.",
+storage:"Servicio de consigna",
+storageText:"Disponible antes del check-in o después del check-out. Consulta en recepción.",
+breakfast:"Desayuno",
+notIncluded:"No incluido",
+breakfastText:"Encontrarás cafeterías y establecimientos para desayunar cerca del hostal.",
+connected:"Bien conectado",
+airportHeading:"Aeropuerto, Barcelona y Fira.",
+transportIntro:"Sant Boi permite acceder fácilmente al aeropuerto y al centro de Barcelona mediante transporte público.",
+openStation:"Abrir estación FGC",
+airport:"Aeropuerto",
+airportInfo:"Conexión mediante autobús L77 desde T1 y T2 hasta Sant Boi. También puedes desplazarte en taxi, VTC o vehículo privado.",
+barcelonaInfo:"Desde la estación FGC Sant Boi puedes llegar a Plaça Espanya en aproximadamente 18 minutos.",
+firaInfo:"Conexión mediante FGC, especialmente cómoda para congresos, ferias y eventos profesionales.",
+parking:"Parking",
+publicParking:"Parking público",
+parkingInfo:"El hostal no dispone de parking propio. Según la información publicada, existe aparcamiento público gratuito junto a la estación FGC.",
+explore:"Explora",
+discoverSantBoi:"Descubre Sant Boi.",
+culture:"Cultura",
+nature:"Naturaleza",
+gastronomy:"Gastronomía",
+restaurants:"Restaurantes cercanos",
+pharmacy:"Farmacias cercanas",
+questions:"Preguntas frecuentes.",
+qWifi:"¿Hay Wi-Fi?",
+aWifi:"Sí. El alojamiento dispone de Wi-Fi gratuito para huéspedes.",
+qBreakfast:"¿Está incluido el desayuno?",
+aBreakfast:"No. Encontrarás cafeterías y bares cerca del alojamiento.",
+qLuggage:"¿Puedo dejar las maletas?",
+aLuggage:"Sí. Consulta en recepción la disponibilidad del servicio de consigna.",
+qPets:"¿Se admiten mascotas?",
+aPets:"No se admiten mascotas.",
+qAirport:"¿Cómo llego al aeropuerto?",
+aAirport:"Puedes utilizar el autobús L77, taxi, VTC o vehículo privado.",
+qLate:"¿Qué ocurre si llego fuera del horario?",
+aLate:"Contacta previamente con el alojamiento para coordinar tu llegada.",
+needHelp:"¿Necesitas ayuda?",
+receptionContact:"Contacta con recepción.",
+call:"Llamar",
+yourOpinion:"Tu opinión importa",
+enjoyed:"¿Has disfrutado de tu estancia?",
+reviewText:"Compartir tu experiencia ayuda al alojamiento y a futuros huéspedes.",
+leaveReview:"Dejar una reseña",
+home:"Inicio",
+help:"Ayuda"
 },
 
-en: {
-  demo:"DEMO · NEXORA GUEST HUB",
-  welcome:"Welcome. Everything you need during your stay, all in one place.",
-  wifi:"Wi-Fi",
-  transport:"Transport",
-  reception:"Reception",
-  reviews:"Reviews",
-  demoWarning:"This is a Nexora Guest Hub demonstration created using publicly available information. The final version would be reviewed and approved by the accommodation.",
-  yourStay:"YOUR STAY",
-  wifiTitle:"Wi-Fi",
-  freeWifi:"Free Wi-Fi",
-  wifiDesc:"Free Wi-Fi is available for guests.",
-  network:"Network",
-  password:"Password",
-  askReception:"Ask reception",
-  wifiDemo:"The real network and password would appear here in the final version.",
-  usefulInfo:"USEFUL INFORMATION",
-  schedule:"Opening hours",
-  checkin:"Monday–Thursday: 12:00–13:00 and 15:30–22:00.<br>Friday, weekends and public holidays: 12:00–13:30 and 16:30–22:00.",
-  checkout:"Until 12:00.",
-  receptionHours:"Monday–Thursday: 10:00–13:00 and 15:30–22:00.<br>Friday, weekends and public holidays: 10:00–13:30 and 16:30–22:00.",
-  lateArrival:"Late arrival",
-  lateArrivalText:"Please contact the accommodation in advance. In exceptional cases, key collection may be arranged using a security box.",
-  comfort:"COMFORT",
-  roomServices:"Room & services",
-  everythingNeeded:"Everything you need during your stay",
-  privateBathroom:"Private bathroom",
-  air:"Air conditioning",
-  heating:"Heating",
-  safe:"Safe",
-  toiletries:"Toiletries",
-  dryer:"Hairdryer",
-  cleaning:"Daily cleaning",
-  lift:"Lift",
-  luggage:"Luggage storage",
-  luggageText:"You may leave your luggage before check-in or after check-out. Please ask reception about availability.",
-  breakfast:"Breakfast",
-  breakfastText:"Breakfast is not included. Bars and cafés can be found close to the accommodation.",
-  important:"IMPORTANT",
-  rules:"House rules",
-  noSmoking:"Smoke-free property",
-  noSmokingText:"Smoking is not permitted in the rooms, including electronic cigarettes and similar devices.",
-  pets:"Pets",
-  petsText:"Pets are not allowed.",
-  identification:"Identification",
-  identificationText:"Valid identification is required at check-in.",
-  children:"Children & cots",
-  childrenText:"A cot and an extra bed are available on request and subject to availability.",
-  moveAround:"GETTING AROUND",
-  transportTitle:"Transport",
-  airport:"Barcelona-El Prat Airport",
-  airportText:"L77 bus from T1/T2 to Sant Boi. Taxi, ride-hailing services and car are also available.",
-  openMaps:"Open Maps",
-  barcelonaText:"Sant Boi FGC station is only a short walk away. Plaça Espanya is approximately 18 minutes away by train.",
-  station:"View station",
-  firaText:"FGC connection to Europa | Fira, convenient for guests attending conferences, exhibitions and events.",
-  route:"View route",
-  parking:"Parking",
-  parkingText:"The accommodation does not have private parking. Public free parking is available near Sant Boi FGC station according to the property's published information.",
-  findParking:"Find parking",
-  nightBus:"Night transport",
-  nightBusText:"Sant Boi has night bus connections with Barcelona.",
-  discover:"DISCOVER THE AREA",
-  santBoi:"Explore Sant Boi",
-  mapsTap:"Tap to open in Maps →",
-  nearby:"NEAR YOU",
-  needSomething:"Need something?",
-  restaurants:"Restaurants",
-  restaurantsText:"Find places to eat near the accommodation.",
-  cafes:"Cafés",
-  cafesText:"Find cafés and breakfast options nearby.",
-  supermarkets:"Supermarkets",
-  pharmacies:"Pharmacies",
-  openNearby:"Open nearby options in Maps.",
-  help:"NEED HELP?",
-  contact:"Contact & reception",
-  call:"Call",
-  faq:"Frequently asked questions",
-  faqWifi:"Is Wi-Fi available?",
-  faqWifiA:"Yes. Free Wi-Fi is available.",
-  faqBreakfast:"Is breakfast included?",
-  faqBreakfastA:"No. Bars and cafés are located close to the accommodation.",
-  faqLuggage:"Can I leave my luggage?",
-  faqLuggageA:"Yes. Please ask reception about luggage storage availability.",
-  faqPets:"Are pets allowed?",
-  faqPetsA:"No. Pets are not allowed.",
-  faqAirport:"How can I get to the airport?",
-  faqAirportA:"You can use the L77 bus, taxi, ride-hailing services or a private vehicle.",
-  faqLate:"What if I arrive late?",
-  faqLateA:"Please contact the accommodation in advance to arrange your arrival.",
-  enjoyed:"Did you enjoy your stay?",
-  reviewText:"Your feedback helps the accommodation and future guests.",
-  leaveReview:"Leave a review",
-  demoFooter:"Demonstration version"
+en:{
+welcome:"Everything you need during your stay, all in one place.",
+discoverHub:"Discover your Guest Hub",
+yourStay:"Your stay",
+everything:"Everything you need.<br>Whenever you need it.",
+intro:"Accommodation information, services, transport and recommendations for your stay in Sant Boi and Barcelona.",
+stay:"Stay",
+room:"Your room",
+move:"Getting around",
+transport:"Transport",
+discover:"Discover",
+useful:"Useful information",
+arrival:"Your arrival",
+arrivalText:"Find the key information you need for your arrival and departure.",
+checkin:"Monday to Thursday: 12:00–13:00 and 15:30–22:00. Friday, weekends and public holidays: 12:00–13:30 and 16:30–22:00.",
+before12:"Until 12:00",
+checkout:"Ask reception if you need to leave your luggage after check-out.",
+reception:"Reception",
+receptionHours:"Split opening hours. Contact reception if you need assistance during your stay.",
+late:"Late arrivals",
+contactBefore:"Contact us in advance",
+lateText:"In certain situations, key collection may be arranged using a security box.",
+wifiTitle:"Stay connected",
+wifiText:"Free Wi-Fi is available for guests.",
+network:"Network",
+password:"Password",
+receptionAsk:"Ask reception",
+comfort:"Comfort",
+services:"Services",
+servicesText:"Services available to make your stay more comfortable.",
+privateBath:"Private bathroom",
+air:"Air conditioning",
+heating:"Heating",
+safe:"Safe",
+toiletries:"Toiletries",
+hairdryer:"Hairdryer",
+cleaning:"Daily cleaning",
+lift:"Lift",
+luggage:"Luggage storage",
+iron:"Iron on request",
+important:"Important information",
+rules:"During your stay",
+rulesIntro:"Useful information to help ensure a comfortable stay.",
+smoking:"Smoking",
+smokeFree:"Smoke-free accommodation",
+smokingText:"Smoking is not permitted in the rooms, including electronic cigarettes.",
+pets:"Pets",
+notAllowed:"Not allowed",
+petsText:"Pets are not permitted.",
+storage:"Luggage storage",
+storageText:"Available before check-in or after check-out. Please ask reception.",
+breakfast:"Breakfast",
+notIncluded:"Not included",
+breakfastText:"Cafés and breakfast options can be found close to the hostel.",
+connected:"Well connected",
+airportHeading:"Airport, Barcelona & Fira.",
+transportIntro:"Sant Boi provides convenient public transport connections to Barcelona and the airport.",
+openStation:"Open FGC station",
+airport:"Airport",
+airportInfo:"L77 bus connection from T1 and T2 to Sant Boi. Taxi, ride-hailing services and private vehicles are also available.",
+barcelonaInfo:"Plaça Espanya can be reached from Sant Boi FGC station in approximately 18 minutes.",
+firaInfo:"FGC connection, especially convenient for conferences, exhibitions and professional events.",
+parking:"Parking",
+publicParking:"Public parking",
+parkingInfo:"The hostel does not have private parking. According to published information, free public parking is available near the FGC station.",
+explore:"Explore",
+discoverSantBoi:"Discover Sant Boi.",
+culture:"Culture",
+nature:"Nature",
+gastronomy:"Food",
+restaurants:"Nearby restaurants",
+pharmacy:"Nearby pharmacies",
+questions:"Frequently asked questions.",
+qWifi:"Is Wi-Fi available?",
+aWifi:"Yes. Free Wi-Fi is available for guests.",
+qBreakfast:"Is breakfast included?",
+aBreakfast:"No. Cafés and bars can be found close to the accommodation.",
+qLuggage:"Can I leave my luggage?",
+aLuggage:"Yes. Please ask reception about luggage storage availability.",
+qPets:"Are pets allowed?",
+aPets:"No. Pets are not allowed.",
+qAirport:"How do I get to the airport?",
+aAirport:"You can use the L77 bus, taxi, ride-hailing services or a private vehicle.",
+qLate:"What if I arrive outside reception hours?",
+aLate:"Please contact the accommodation in advance to arrange your arrival.",
+needHelp:"Need help?",
+receptionContact:"Contact reception.",
+call:"Call",
+yourOpinion:"Your opinion matters",
+enjoyed:"Did you enjoy your stay?",
+reviewText:"Sharing your experience helps the accommodation and future guests.",
+leaveReview:"Leave a review",
+home:"Home",
+help:"Help"
 }
 
 };
 
-/* 
-   Para que la demo ya funcione con TODOS los idiomas,
-   los idiomas todavía no traducidos manualmente usarán inglés
-   temporalmente. Después podemos añadir las traducciones completas.
-*/
+/* Los demás idiomas se completarán después */
+translations.fr={...translations.en};
+translations.de={...translations.en};
+translations.it={...translations.en};
+translations.pt={...translations.en};
+translations.pl={...translations.en};
+translations.ar={...translations.en};
 
-translations.fr = {...translations.en};
-translations.de = {...translations.en};
-translations.it = {...translations.en};
-translations.pt = {...translations.en};
-translations.pl = {...translations.en};
-translations.ar = {...translations.en};
+function changeLanguage(lang){
 
-function changeLanguage(lang) {
+const dict=translations[lang]||translations.es;
 
-  const dictionary = translations[lang] || translations.es;
+document.documentElement.lang=lang;
+document.documentElement.dir=lang==="ar"?"rtl":"ltr";
 
-  document.documentElement.lang = lang;
+document.querySelectorAll("[data-t]").forEach(el=>{
+const key=el.dataset.t;
+if(dict[key]){
+el.innerHTML=dict[key];
+}
+});
 
-  if (lang === "ar") {
-    document.documentElement.dir = "rtl";
-  } else {
-    document.documentElement.dir = "ltr";
-  }
+localStorage.setItem("guestHubLanguage",lang);
 
-  document.querySelectorAll("[data-i18n]").forEach(element => {
-    const key = element.dataset.i18n;
-
-    if (dictionary[key]) {
-      element.innerHTML = dictionary[key];
-    }
-  });
-
-  localStorage.setItem("guestHubLanguage", lang);
 }
 
-function goTo(id) {
-  document.getElementById(id).scrollIntoView({
-    behavior: "smooth",
-    block: "start"
-  });
+const saved=localStorage.getItem("guestHubLanguage");
+
+if(saved && translations[saved]){
+document.getElementById("language").value=saved;
+changeLanguage(saved);
 }
 
-const savedLanguage = localStorage.getItem("guestHubLanguage");
-
-if (savedLanguage && translations[savedLanguage]) {
-  document.getElementById("language").value = savedLanguage;
-  changeLanguage(savedLanguage);
-}
 </script>
 
 </body>
