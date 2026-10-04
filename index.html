@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#0a0d0c">
+<meta name="theme-color" content="#090c0b">
 
 <title>Hostal Rambla | Guest Hub</title>
 
@@ -16,7 +16,6 @@
   --black:#090c0b;
   --dark:#0f1412;
   --dark2:#151c19;
-  --card:#18201d;
   --gold:#c7a66a;
   --gold-light:#e1c997;
   --white:#f7f5ef;
@@ -63,9 +62,9 @@ button,select{
   background:
   linear-gradient(
     180deg,
-    rgba(5,8,7,.30) 0%,
-    rgba(5,8,7,.40) 35%,
-    rgba(5,8,7,.96) 100%
+    rgba(5,8,7,.25) 0%,
+    rgba(5,8,7,.42) 38%,
+    rgba(5,8,7,.97) 100%
   ),
   url("https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1800&q=90")
   center/cover;
@@ -75,6 +74,7 @@ button,select{
   display:flex;
   justify-content:space-between;
   align-items:center;
+  gap:15px;
 }
 
 .brand{
@@ -89,7 +89,7 @@ button,select{
 
 .language{
   border:1px solid rgba(255,255,255,.25);
-  background:rgba(10,13,12,.55);
+  background:rgba(10,13,12,.60);
   backdrop-filter:blur(10px);
   color:white;
   padding:9px 12px;
@@ -121,7 +121,6 @@ h1{
   font-size:clamp(50px,10vw,92px);
   line-height:.95;
   letter-spacing:-2px;
-  max-width:800px;
 }
 
 .heroText{
@@ -148,7 +147,7 @@ h1{
   background:var(--gold);
 }
 
-/* CONTAINER */
+/* GENERAL */
 
 .container{
   max-width:1050px;
@@ -183,7 +182,7 @@ h1{
   font-weight:300;
 }
 
-/* FEATURE CARDS */
+/* IMAGE CARDS */
 
 .features{
   display:grid;
@@ -200,17 +199,13 @@ h1{
   display:flex;
   align-items:flex-end;
   padding:22px;
-  cursor:pointer;
 }
 
 .feature::after{
   content:"";
   position:absolute;
   inset:0;
-  background:linear-gradient(
-    transparent 20%,
-    rgba(0,0,0,.85)
-  );
+  background:linear-gradient(transparent 20%,rgba(0,0,0,.88));
 }
 
 .feature img{
@@ -244,7 +239,7 @@ h1{
   margin-top:5px;
 }
 
-/* SECTION */
+/* SECTIONS */
 
 .section{
   padding:65px 0;
@@ -269,8 +264,6 @@ h1{
   color:var(--muted);
   max-width:560px;
 }
-
-/* INFORMATION */
 
 .infoGrid{
   display:grid;
@@ -352,7 +345,7 @@ h1{
   font-size:15px;
 }
 
-/* SERVICE LIST */
+/* SERVICES */
 
 .services{
   display:grid;
@@ -367,12 +360,12 @@ h1{
   font-size:14px;
 }
 
-/* TRANSPORT IMAGE */
+/* TRANSPORT */
 
 .transportHero{
   min-height:460px;
   background:
-  linear-gradient(90deg,rgba(7,10,9,.93),rgba(7,10,9,.25)),
+  linear-gradient(90deg,rgba(7,10,9,.94),rgba(7,10,9,.28)),
   url("https://images.unsplash.com/photo-1539037116277-4db20889f2d4?auto=format&fit=crop&w=1800&q=90")
   center/cover;
   display:flex;
@@ -406,7 +399,7 @@ h1{
   margin-top:22px;
   border:1px solid var(--gold);
   color:var(--gold-light);
-  padding:12px 19px;
+  padding:13px 20px;
   font-size:11px;
   letter-spacing:1.4px;
   text-transform:uppercase;
@@ -474,7 +467,6 @@ summary::after{
   content:"+";
   float:right;
   color:var(--gold);
-  font-family:"DM Sans",sans-serif;
 }
 
 details[open] summary::after{
@@ -528,7 +520,7 @@ details p{
 
 .review{
   text-align:center;
-  padding:70px 20px;
+  padding:75px 20px;
 }
 
 .review h2{
@@ -545,7 +537,7 @@ details p{
 
 .reviewStars{
   color:var(--gold);
-  font-size:23px;
+  font-size:24px;
   letter-spacing:8px;
   margin:20px 0;
 }
@@ -603,6 +595,17 @@ footer strong{
   color:var(--gold);
 }
 
+[dir="rtl"]{
+  text-align:right;
+}
+
+[dir="rtl"] .wifiData{
+  border-left:0;
+  border-right:1px solid #ddd9cf;
+  padding-left:0;
+  padding-right:30px;
+}
+
 @media(max-width:700px){
 
   .hero{
@@ -641,8 +644,10 @@ footer strong{
 
   .wifiData{
     border-left:0;
+    border-right:0;
     border-top:1px solid #ddd9cf;
     padding-left:0;
+    padding-right:0;
     padding-top:20px;
   }
 
@@ -657,10 +662,10 @@ footer strong{
   .contact{
     padding:35px 25px;
   }
-}
 
-[dir="rtl"]{
-  text-align:right;
+  .brand{
+    font-size:9px;
+  }
 }
 </style>
 </head>
@@ -698,8 +703,7 @@ SANT BOI DE LLOBREGAT · BARCELONA
 <h1>Hostal<br>Rambla</h1>
 
 <p class="heroText" data-t="welcome">
-Todo lo que necesitas durante tu estancia,
-reunido en un único lugar.
+Todo lo que necesitas durante tu estancia, reunido en un único lugar.
 </p>
 
 <a href="#stay" class="scroll">
@@ -709,7 +713,6 @@ reunido en un único lugar.
 
 </div>
 </header>
-
 
 <main>
 
@@ -724,69 +727,51 @@ Todo lo que necesitas.<br>Cuando lo necesitas.
 </h2>
 
 <p class="subtitle" data-t="intro">
-Información del alojamiento, servicios, transporte y recomendaciones
-para disfrutar de tu estancia en Sant Boi y Barcelona.
+Información del alojamiento, servicios, transporte y recomendaciones para disfrutar de tu estancia en Sant Boi y Barcelona.
 </p>
 
 </section>
 
-
 <div class="features">
 
 <a href="#information" class="feature">
-
 <img src="https://images.unsplash.com/photo-1618773928121-c32242e63f39?auto=format&fit=crop&w=900&q=85">
-
 <div class="featureContent">
 <div class="featureSmall" data-t="stay">Estancia</div>
 <div class="featureTitle" data-t="room">Tu habitación</div>
 </div>
-
 </a>
 
-
 <a href="#transport" class="feature">
-
 <img src="https://images.unsplash.com/photo-1543783207-ec64e4d95325?auto=format&fit=crop&w=900&q=85">
-
 <div class="featureContent">
 <div class="featureSmall" data-t="move">Muévete</div>
 <div class="featureTitle" data-t="transport">Transporte</div>
 </div>
-
 </a>
 
-
 <a href="#explore" class="feature">
-
 <img src="https://images.unsplash.com/photo-1583422409516-2895a77efded?auto=format&fit=crop&w=900&q=85">
-
 <div class="featureContent">
 <div class="featureSmall" data-t="discover">Descubre</div>
 <div class="featureTitle">Sant Boi & Barcelona</div>
 </div>
-
 </a>
 
 </div>
 
-
 <section class="section" id="information">
 
 <div class="sectionHeader">
-
 <div>
 <span class="eyebrow" data-t="useful">Información útil</span>
 <h2 data-t="arrival">Tu llegada</h2>
 </div>
 
 <p data-t="arrivalText">
-Consulta los horarios principales y la información necesaria
-para tu llegada y salida del alojamiento.
+Consulta los horarios principales y la información necesaria para tu llegada y salida.
 </p>
-
 </div>
-
 
 <div class="infoGrid">
 
@@ -794,11 +779,9 @@ para tu llegada y salida del alojamiento.
 <div class="infoLabel">Check-in</div>
 <h3>12:00 — 22:00</h3>
 <p data-t="checkin">
-Lunes a jueves: 12:00–13:00 y 15:30–22:00.
-Viernes, fines de semana y festivos: 12:00–13:30 y 16:30–22:00.
+Lunes a jueves: 12:00–13:00 y 15:30–22:00. Viernes, fines de semana y festivos: 12:00–13:30 y 16:30–22:00.
 </p>
 </div>
-
 
 <div class="info">
 <div class="infoLabel">Check-out</div>
@@ -808,15 +791,13 @@ Consulta con recepción si necesitas dejar tu equipaje después de la salida.
 </p>
 </div>
 
-
 <div class="info">
 <div class="infoLabel" data-t="reception">Recepción</div>
 <h3>10:00 — 22:00</h3>
 <p data-t="receptionHours">
-Horario partido. Consulta con recepción para cualquier necesidad durante tu estancia.
+Consulta con recepción para cualquier necesidad durante tu estancia.
 </p>
 </div>
-
 
 <div class="info">
 <div class="infoLabel" data-t="late">Llegadas tardías</div>
@@ -827,7 +808,6 @@ En determinadas situaciones puede coordinarse la recogida de llaves mediante caj
 </div>
 
 </div>
-
 
 <div class="wifi">
 
@@ -857,11 +837,9 @@ El alojamiento dispone de conexión Wi-Fi gratuita para huéspedes.
 
 </section>
 
-
 <section class="section">
 
 <div class="sectionHeader">
-
 <div>
 <span class="eyebrow" data-t="comfort">Comodidad</span>
 <h2 data-t="services">Servicios</h2>
@@ -870,9 +848,7 @@ El alojamiento dispone de conexión Wi-Fi gratuita para huéspedes.
 <p data-t="servicesText">
 Servicios disponibles para hacer tu estancia más cómoda.
 </p>
-
 </div>
-
 
 <div class="services">
 
@@ -893,11 +869,9 @@ Servicios disponibles para hacer tu estancia más cómoda.
 
 </section>
 
-
 <section class="section">
 
 <div class="sectionHeader">
-
 <div>
 <span class="eyebrow" data-t="important">Información importante</span>
 <h2 data-t="rules">Durante tu estancia</h2>
@@ -906,9 +880,7 @@ Servicios disponibles para hacer tu estancia más cómoda.
 <p data-t="rulesIntro">
 Algunas indicaciones importantes para garantizar una estancia cómoda.
 </p>
-
 </div>
-
 
 <div class="infoGrid">
 
@@ -950,7 +922,6 @@ Encontrarás cafeterías y establecimientos para desayunar cerca del hostal.
 
 </div>
 
-
 <section class="transportHero" id="transport">
 
 <div class="transportContent">
@@ -962,11 +933,11 @@ Aeropuerto, Barcelona y Fira.
 </h2>
 
 <p data-t="transportIntro">
-Sant Boi permite acceder fácilmente al aeropuerto y al centro de Barcelona
-mediante transporte público.
+Sant Boi permite acceder fácilmente al aeropuerto y al centro de Barcelona mediante transporte público.
 </p>
 
 <a target="_blank"
+rel="noopener"
 class="button"
 href="https://www.google.com/maps/search/?api=1&query=FGC+Sant+Boi"
 data-t="openStation">
@@ -976,7 +947,6 @@ Abrir estación FGC
 </div>
 
 </section>
-
 
 <div class="container">
 
@@ -988,38 +958,31 @@ Abrir estación FGC
 <div class="infoLabel" data-t="airport">Aeropuerto</div>
 <h3>Barcelona-El Prat</h3>
 <p data-t="airportInfo">
-Conexión mediante autobús L77 desde T1 y T2 hasta Sant Boi.
-También puedes desplazarte en taxi, VTC o vehículo privado.
+Conexión mediante autobús L77 desde T1 y T2 hasta Sant Boi. También puedes desplazarte en taxi, VTC o vehículo privado.
 </p>
 </div>
-
 
 <div class="info">
 <div class="infoLabel">Barcelona</div>
 <h3>Plaça Espanya</h3>
 <p data-t="barcelonaInfo">
-Desde la estación FGC Sant Boi puedes llegar a Plaça Espanya
-en aproximadamente 18 minutos.
+Desde la estación FGC Sant Boi puedes llegar a Plaça Espanya en aproximadamente 18 minutos.
 </p>
 </div>
-
 
 <div class="info">
 <div class="infoLabel">Fira Barcelona</div>
 <h3>Europa | Fira</h3>
 <p data-t="firaInfo">
-Conexión mediante FGC, especialmente cómoda para congresos,
-ferias y eventos profesionales.
+Conexión mediante FGC, especialmente cómoda para congresos, ferias y eventos profesionales.
 </p>
 </div>
-
 
 <div class="info">
 <div class="infoLabel" data-t="parking">Parking</div>
 <h3 data-t="publicParking">Parking público</h3>
 <p data-t="parkingInfo">
-El hostal no dispone de parking propio. Según la información publicada,
-existe aparcamiento público gratuito junto a la estación FGC.
+El hostal no dispone de parking propio. Consulta con recepción las opciones de aparcamiento cercanas.
 </p>
 </div>
 
@@ -1027,58 +990,50 @@ existe aparcamiento público gratuito junto a la estación FGC.
 
 </section>
 
-
 <section class="section" id="explore">
 
 <span class="eyebrow" data-t="explore">Explora</span>
-<h2 class="title" data-t="discoverSantBoi">
-Descubre Sant Boi.
-</h2>
+<h2 class="title" data-t="discoverSantBoi">Descubre Sant Boi.</h2>
 
 <div class="places">
 
-<a target="_blank"
+<a target="_blank" rel="noopener"
 href="https://www.google.com/maps/search/?api=1&query=Termes+Romanes+Sant+Boi"
 class="place">
 <span data-t="culture">Cultura</span>
 <strong>Termes Romanes</strong>
 </a>
 
-
-<a target="_blank"
+<a target="_blank" rel="noopener"
 href="https://www.google.com/maps/search/?api=1&query=Museu+Sant+Boi"
 class="place">
 <span data-t="culture">Cultura</span>
 <strong>Museu de Sant Boi</strong>
 </a>
 
-
-<a target="_blank"
+<a target="_blank" rel="noopener"
 href="https://www.google.com/maps/search/?api=1&query=Ermita+Sant+Ramon+Sant+Boi"
 class="place">
 <span data-t="nature">Naturaleza</span>
 <strong>Ermita de Sant Ramon</strong>
 </a>
 
-
-<a target="_blank"
+<a target="_blank" rel="noopener"
 href="https://www.google.com/maps/search/?api=1&query=Parc+Muntanyeta+Sant+Boi"
 class="place">
 <span data-t="nature">Naturaleza</span>
 <strong>Parc de la Muntanyeta</strong>
 </a>
 
-
-<a target="_blank"
-href="https://www.google.com/maps/search/restaurants+near+Rambla+Rafael+Casanova+9+Sant+Boi"
+<a target="_blank" rel="noopener"
+href="https://www.google.com/maps/search/?api=1&query=restaurants+near+Rambla+Rafael+Casanova+9+Sant+Boi"
 class="place">
 <span data-t="gastronomy">Gastronomía</span>
 <strong data-t="restaurants">Restaurantes cercanos</strong>
 </a>
 
-
-<a target="_blank"
-href="https://www.google.com/maps/search/pharmacy+near+Rambla+Rafael+Casanova+9+Sant+Boi"
+<a target="_blank" rel="noopener"
+href="https://www.google.com/maps/search/?api=1&query=pharmacy+near+Rambla+Rafael+Casanova+9+Sant+Boi"
 class="place">
 <span data-t="useful">Información útil</span>
 <strong data-t="pharmacy">Farmacias cercanas</strong>
@@ -1088,13 +1043,10 @@ class="place">
 
 </section>
 
-
 <section class="section">
 
 <span class="eyebrow">FAQ</span>
-<h2 class="title" data-t="questions">
-Preguntas frecuentes.
-</h2>
+<h2 class="title" data-t="questions">Preguntas frecuentes.</h2>
 
 <details>
 <summary data-t="qWifi">¿Hay Wi-Fi?</summary>
@@ -1128,14 +1080,11 @@ Preguntas frecuentes.
 
 </section>
 
-
 <section class="contact" id="contact">
 
 <small data-t="needHelp">¿Necesitas ayuda?</small>
 
-<h2 data-t="receptionContact">
-Contacta con recepción.
-</h2>
+<h2 data-t="receptionContact">Contacta con recepción.</h2>
 
 <p>
 Hostal Rambla<br>
@@ -1145,7 +1094,9 @@ Rambla Rafael Casanova, 9<br>
 
 <div class="contactActions">
 
-<a class="contactBtn" href="tel:+34936400397" data-t="call">
+<a class="contactBtn"
+href="tel:+34936400397"
+data-t="call">
 Llamar
 </a>
 
@@ -1156,6 +1107,7 @@ Email
 
 <a class="contactBtn"
 target="_blank"
+rel="noopener"
 href="https://www.google.com/maps/search/?api=1&query=Hostal+Rambla+Sant+Boi">
 Google Maps
 </a>
@@ -1164,26 +1116,24 @@ Google Maps
 
 </section>
 
-
 <section class="review" id="review">
 
 <span class="eyebrow" data-t="yourOpinion">Tu opinión importa</span>
 
-<h2 data-t="enjoyed">
-¿Has disfrutado de tu estancia?
-</h2>
+<h2 data-t="enjoyed">¿Has disfrutado de tu estancia?</h2>
 
 <div class="reviewStars">★★★★★</div>
 
 <p data-t="reviewText">
-Compartir tu experiencia ayuda al alojamiento y a futuros huéspedes.
+Comparte tu experiencia con otros viajeros.
 </p>
 
 <a class="button"
 target="_blank"
-href="https://www.google.com/search?q=Hostal+Rambla+Sant+Boi+opiniones"
+rel="noopener"
+href="https://search.google.com/local/writereview?placeid=ChIJN2wu_YubpBIRUxlJFNgz4fU"
 data-t="leaveReview">
-Dejar una reseña
+Escribir una reseña
 </a>
 
 </section>
@@ -1191,7 +1141,6 @@ Dejar una reseña
 </div>
 
 </main>
-
 
 <footer>
 
@@ -1208,69 +1157,53 @@ DEMO · POWERED BY
 
 </footer>
 
-
 <nav class="mobileNav">
 
 <a href="#home" class="navItem">
-
 <svg class="navIcon" viewBox="0 0 24 24">
 <path d="M3 11.5L12 4l9 7.5"/>
 <path d="M5 10v10h14V10"/>
 </svg>
-
 <span data-t="home">Inicio</span>
 </a>
 
-
 <a href="#information" class="navItem">
-
 <svg class="navIcon" viewBox="0 0 24 24">
 <rect x="4" y="3" width="16" height="18" rx="2"/>
 <path d="M8 7h8M8 11h8M8 15h5"/>
 </svg>
-
 <span data-t="stay">Estancia</span>
 </a>
 
-
 <a href="#transport" class="navItem">
-
 <svg class="navIcon" viewBox="0 0 24 24">
 <path d="M4 17h16"/>
 <path d="M6 17l2-9h8l2 9"/>
 <path d="M9 12h6"/>
 </svg>
-
 <span data-t="move">Moverse</span>
 </a>
 
-
 <a href="#explore" class="navItem">
-
 <svg class="navIcon" viewBox="0 0 24 24">
 <circle cx="12" cy="12" r="9"/>
 <path d="M15 9l-2 4-4 2 2-4z"/>
 </svg>
-
 <span data-t="explore">Explorar</span>
 </a>
 
-
 <a href="#contact" class="navItem">
-
 <svg class="navIcon" viewBox="0 0 24 24">
 <path d="M5 4h14v12H8l-3 3z"/>
 </svg>
-
 <span data-t="help">Ayuda</span>
 </a>
 
 </nav>
 
-
 <script>
 
-const translations={
+const translations = {
 
 es:{
 welcome:"Todo lo que necesitas durante tu estancia, reunido en un único lugar.",
@@ -1280,17 +1213,17 @@ everything:"Todo lo que necesitas.<br>Cuando lo necesitas.",
 intro:"Información del alojamiento, servicios, transporte y recomendaciones para disfrutar de tu estancia en Sant Boi y Barcelona.",
 stay:"Estancia",
 room:"Tu habitación",
-move:"Muévete",
+move:"Moverse",
 transport:"Transporte",
 discover:"Descubre",
 useful:"Información útil",
 arrival:"Tu llegada",
-arrivalText:"Consulta los horarios principales y la información necesaria para tu llegada y salida del alojamiento.",
+arrivalText:"Consulta los horarios principales y la información necesaria para tu llegada y salida.",
 checkin:"Lunes a jueves: 12:00–13:00 y 15:30–22:00. Viernes, fines de semana y festivos: 12:00–13:30 y 16:30–22:00.",
 before12:"Hasta las 12:00",
 checkout:"Consulta con recepción si necesitas dejar tu equipaje después de la salida.",
 reception:"Recepción",
-receptionHours:"Horario partido. Consulta con recepción para cualquier necesidad durante tu estancia.",
+receptionHours:"Consulta con recepción para cualquier necesidad durante tu estancia.",
 late:"Llegadas tardías",
 contactBefore:"Contacta previamente",
 lateText:"En determinadas situaciones puede coordinarse la recogida de llaves mediante cajón de seguridad.",
@@ -1336,7 +1269,7 @@ barcelonaInfo:"Desde la estación FGC Sant Boi puedes llegar a Plaça Espanya en
 firaInfo:"Conexión mediante FGC, especialmente cómoda para congresos, ferias y eventos profesionales.",
 parking:"Parking",
 publicParking:"Parking público",
-parkingInfo:"El hostal no dispone de parking propio. Según la información publicada, existe aparcamiento público gratuito junto a la estación FGC.",
+parkingInfo:"El hostal no dispone de parking propio. Consulta con recepción las opciones de aparcamiento cercanas.",
 explore:"Explora",
 discoverSantBoi:"Descubre Sant Boi.",
 culture:"Cultura",
@@ -1362,8 +1295,8 @@ receptionContact:"Contacta con recepción.",
 call:"Llamar",
 yourOpinion:"Tu opinión importa",
 enjoyed:"¿Has disfrutado de tu estancia?",
-reviewText:"Compartir tu experiencia ayuda al alojamiento y a futuros huéspedes.",
-leaveReview:"Dejar una reseña",
+reviewText:"Comparte tu experiencia con otros viajeros.",
+leaveReview:"Escribir una reseña",
 home:"Inicio",
 help:"Ayuda"
 },
@@ -1386,7 +1319,7 @@ checkin:"Monday to Thursday: 12:00–13:00 and 15:30–22:00. Friday, weekends a
 before12:"Until 12:00",
 checkout:"Ask reception if you need to leave your luggage after check-out.",
 reception:"Reception",
-receptionHours:"Split opening hours. Contact reception if you need assistance during your stay.",
+receptionHours:"Contact reception if you need assistance during your stay.",
 late:"Late arrivals",
 contactBefore:"Contact us in advance",
 lateText:"In certain situations, key collection may be arranged using a security box.",
@@ -1424,7 +1357,7 @@ notIncluded:"Not included",
 breakfastText:"Cafés and breakfast options can be found close to the hostel.",
 connected:"Well connected",
 airportHeading:"Airport, Barcelona & Fira.",
-transportIntro:"Sant Boi provides convenient public transport connections to Barcelona and the airport.",
+transportIntro:"Sant Boi offers convenient public transport connections to Barcelona and the airport.",
 openStation:"Open FGC station",
 airport:"Airport",
 airportInfo:"L77 bus connection from T1 and T2 to Sant Boi. Taxi, ride-hailing services and private vehicles are also available.",
@@ -1432,7 +1365,7 @@ barcelonaInfo:"Plaça Espanya can be reached from Sant Boi FGC station in approx
 firaInfo:"FGC connection, especially convenient for conferences, exhibitions and professional events.",
 parking:"Parking",
 publicParking:"Public parking",
-parkingInfo:"The hostel does not have private parking. According to published information, free public parking is available near the FGC station.",
+parkingInfo:"The hostel does not have private parking. Ask reception about nearby parking options.",
 explore:"Explore",
 discoverSantBoi:"Discover Sant Boi.",
 culture:"Culture",
@@ -1446,7 +1379,7 @@ aWifi:"Yes. Free Wi-Fi is available for guests.",
 qBreakfast:"Is breakfast included?",
 aBreakfast:"No. Cafés and bars can be found close to the accommodation.",
 qLuggage:"Can I leave my luggage?",
-aLuggage:"Yes. Please ask reception about luggage storage availability.",
+aLuggage:"Yes. Please ask reception about luggage storage.",
 qPets:"Are pets allowed?",
 aPets:"No. Pets are not allowed.",
 qAirport:"How do I get to the airport?",
@@ -1458,45 +1391,618 @@ receptionContact:"Contact reception.",
 call:"Call",
 yourOpinion:"Your opinion matters",
 enjoyed:"Did you enjoy your stay?",
-reviewText:"Sharing your experience helps the accommodation and future guests.",
-leaveReview:"Leave a review",
+reviewText:"Share your experience with other travellers.",
+leaveReview:"Write a review",
 home:"Home",
 help:"Help"
+},
+
+fr:{
+welcome:"Tout ce dont vous avez besoin pendant votre séjour, réuni au même endroit.",
+discoverHub:"Découvrez votre Guest Hub",
+yourStay:"Votre séjour",
+everything:"Tout ce dont vous avez besoin.<br>Quand vous en avez besoin.",
+intro:"Informations sur l'hébergement, services, transports et recommandations pour profiter de votre séjour à Sant Boi et Barcelone.",
+stay:"Séjour",
+room:"Votre chambre",
+move:"Se déplacer",
+transport:"Transports",
+discover:"Découvrir",
+useful:"Informations utiles",
+arrival:"Votre arrivée",
+arrivalText:"Consultez les horaires principaux et les informations nécessaires pour votre arrivée et votre départ.",
+checkin:"Du lundi au jeudi : 12:00–13:00 et 15:30–22:00. Vendredi, week-ends et jours fériés : 12:00–13:30 et 16:30–22:00.",
+before12:"Jusqu'à 12:00",
+checkout:"Contactez la réception si vous souhaitez laisser vos bagages après votre départ.",
+reception:"Réception",
+receptionHours:"Contactez la réception si vous avez besoin d'aide pendant votre séjour.",
+late:"Arrivées tardives",
+contactBefore:"Contactez-nous à l'avance",
+lateText:"Dans certaines situations, la remise des clés peut être organisée à l'aide d'un coffre sécurisé.",
+wifiTitle:"Restez connecté",
+wifiText:"Une connexion Wi-Fi gratuite est disponible pour les clients.",
+network:"Réseau",
+password:"Mot de passe",
+receptionAsk:"Demander à la réception",
+comfort:"Confort",
+services:"Services",
+servicesText:"Services disponibles pour rendre votre séjour plus confortable.",
+privateBath:"Salle de bain privée",
+air:"Climatisation",
+heating:"Chauffage",
+safe:"Coffre-fort",
+toiletries:"Articles de toilette",
+hairdryer:"Sèche-cheveux",
+cleaning:"Nettoyage quotidien",
+lift:"Ascenseur",
+luggage:"Consigne à bagages",
+iron:"Fer à repasser sur demande",
+important:"Informations importantes",
+rules:"Pendant votre séjour",
+rulesIntro:"Quelques informations importantes pour garantir un séjour confortable.",
+smoking:"Tabac",
+smokeFree:"Hébergement non-fumeur",
+smokingText:"Il est interdit de fumer dans les chambres, y compris les cigarettes électroniques.",
+pets:"Animaux",
+notAllowed:"Non admis",
+petsText:"Les animaux ne sont pas admis.",
+storage:"Consigne à bagages",
+storageText:"Disponible avant l'arrivée ou après le départ. Consultez la réception.",
+breakfast:"Petit-déjeuner",
+notIncluded:"Non inclus",
+breakfastText:"Vous trouverez des cafés et des options de petit-déjeuner à proximité.",
+connected:"Bien desservi",
+airportHeading:"Aéroport, Barcelone et Fira.",
+transportIntro:"Sant Boi offre des liaisons pratiques en transports publics vers Barcelone et l'aéroport.",
+openStation:"Ouvrir la gare FGC",
+airport:"Aéroport",
+airportInfo:"Ligne de bus L77 depuis T1 et T2 jusqu'à Sant Boi. Taxi, VTC et véhicule privé sont également possibles.",
+barcelonaInfo:"Plaça Espanya est accessible depuis la gare FGC de Sant Boi en environ 18 minutes.",
+firaInfo:"Liaison FGC pratique pour les congrès, salons et événements professionnels.",
+parking:"Parking",
+publicParking:"Parking public",
+parkingInfo:"L'hostal ne dispose pas de parking privé. Consultez la réception pour les options à proximité.",
+explore:"Explorer",
+discoverSantBoi:"Découvrez Sant Boi.",
+culture:"Culture",
+nature:"Nature",
+gastronomy:"Gastronomie",
+restaurants:"Restaurants à proximité",
+pharmacy:"Pharmacies à proximité",
+questions:"Questions fréquentes.",
+qWifi:"Le Wi-Fi est-il disponible ?",
+aWifi:"Oui. Une connexion Wi-Fi gratuite est disponible.",
+qBreakfast:"Le petit-déjeuner est-il inclus ?",
+aBreakfast:"Non. Vous trouverez des cafés et bars à proximité.",
+qLuggage:"Puis-je laisser mes bagages ?",
+aLuggage:"Oui. Consultez la réception pour la consigne.",
+qPets:"Les animaux sont-ils admis ?",
+aPets:"Non. Les animaux ne sont pas admis.",
+qAirport:"Comment aller à l'aéroport ?",
+aAirport:"Vous pouvez utiliser le bus L77, un taxi, un VTC ou un véhicule privé.",
+qLate:"Que faire si j'arrive tard ?",
+aLate:"Contactez l'hébergement à l'avance pour organiser votre arrivée.",
+needHelp:"Besoin d'aide ?",
+receptionContact:"Contactez la réception.",
+call:"Appeler",
+yourOpinion:"Votre avis compte",
+enjoyed:"Avez-vous apprécié votre séjour ?",
+reviewText:"Partagez votre expérience avec d'autres voyageurs.",
+leaveReview:"Écrire un avis",
+home:"Accueil",
+help:"Aide"
+},
+
+de:{
+welcome:"Alles, was Sie während Ihres Aufenthalts benötigen, an einem Ort.",
+discoverHub:"Entdecken Sie Ihren Guest Hub",
+yourStay:"Ihr Aufenthalt",
+everything:"Alles, was Sie brauchen.<br>Wann immer Sie es brauchen.",
+intro:"Informationen zur Unterkunft, Services, Verkehr und Empfehlungen für Ihren Aufenthalt in Sant Boi und Barcelona.",
+stay:"Aufenthalt",
+room:"Ihr Zimmer",
+move:"Unterwegs",
+transport:"Verkehr",
+discover:"Entdecken",
+useful:"Nützliche Informationen",
+arrival:"Ihre Ankunft",
+arrivalText:"Hier finden Sie die wichtigsten Informationen für Ihre Ankunft und Abreise.",
+checkin:"Montag bis Donnerstag: 12:00–13:00 und 15:30–22:00. Freitag, Wochenende und Feiertage: 12:00–13:30 und 16:30–22:00.",
+before12:"Bis 12:00 Uhr",
+checkout:"Fragen Sie an der Rezeption, wenn Sie Ihr Gepäck nach dem Check-out aufbewahren möchten.",
+reception:"Rezeption",
+receptionHours:"Wenden Sie sich während Ihres Aufenthalts bei Fragen an die Rezeption.",
+late:"Späte Anreise",
+contactBefore:"Vorher Kontakt aufnehmen",
+lateText:"In bestimmten Fällen kann die Schlüsselübergabe über einen Schlüsselsafe organisiert werden.",
+wifiTitle:"Bleiben Sie verbunden",
+wifiText:"Kostenloses WLAN steht Gästen zur Verfügung.",
+network:"Netzwerk",
+password:"Passwort",
+receptionAsk:"An der Rezeption fragen",
+comfort:"Komfort",
+services:"Services",
+servicesText:"Services für einen angenehmen Aufenthalt.",
+privateBath:"Privates Badezimmer",
+air:"Klimaanlage",
+heating:"Heizung",
+safe:"Safe",
+toiletries:"Pflegeprodukte",
+hairdryer:"Haartrockner",
+cleaning:"Tägliche Reinigung",
+lift:"Aufzug",
+luggage:"Gepäckaufbewahrung",
+iron:"Bügeleisen auf Anfrage",
+important:"Wichtige Informationen",
+rules:"Während Ihres Aufenthalts",
+rulesIntro:"Wichtige Hinweise für einen angenehmen Aufenthalt.",
+smoking:"Rauchen",
+smokeFree:"Nichtraucher-Unterkunft",
+smokingText:"Das Rauchen in den Zimmern ist nicht gestattet, einschließlich E-Zigaretten.",
+pets:"Haustiere",
+notAllowed:"Nicht gestattet",
+petsText:"Haustiere sind nicht gestattet.",
+storage:"Gepäckaufbewahrung",
+storageText:"Vor dem Check-in oder nach dem Check-out verfügbar. Fragen Sie an der Rezeption.",
+breakfast:"Frühstück",
+notIncluded:"Nicht inbegriffen",
+breakfastText:"Cafés und Frühstücksmöglichkeiten befinden sich in der Nähe.",
+connected:"Gut angebunden",
+airportHeading:"Flughafen, Barcelona & Fira.",
+transportIntro:"Sant Boi bietet praktische öffentliche Verkehrsverbindungen nach Barcelona und zum Flughafen.",
+openStation:"FGC-Station öffnen",
+airport:"Flughafen",
+airportInfo:"Bus L77 von T1 und T2 nach Sant Boi. Taxi, Fahrdienste und Privatfahrzeuge sind ebenfalls möglich.",
+barcelonaInfo:"Plaça Espanya erreichen Sie vom FGC-Bahnhof Sant Boi in etwa 18 Minuten.",
+firaInfo:"Praktische FGC-Verbindung für Kongresse, Messen und geschäftliche Veranstaltungen.",
+parking:"Parken",
+publicParking:"Öffentliches Parken",
+parkingInfo:"Das Hostal verfügt über keinen eigenen Parkplatz. Fragen Sie an der Rezeption nach Parkmöglichkeiten.",
+explore:"Entdecken",
+discoverSantBoi:"Sant Boi entdecken.",
+culture:"Kultur",
+nature:"Natur",
+gastronomy:"Gastronomie",
+restaurants:"Restaurants in der Nähe",
+pharmacy:"Apotheken in der Nähe",
+questions:"Häufige Fragen.",
+qWifi:"Gibt es WLAN?",
+aWifi:"Ja. Gästen steht kostenloses WLAN zur Verfügung.",
+qBreakfast:"Ist Frühstück inbegriffen?",
+aBreakfast:"Nein. Cafés und Bars befinden sich in der Nähe.",
+qLuggage:"Kann ich mein Gepäck aufbewahren?",
+aLuggage:"Ja. Fragen Sie an der Rezeption nach der Gepäckaufbewahrung.",
+qPets:"Sind Haustiere erlaubt?",
+aPets:"Nein. Haustiere sind nicht erlaubt.",
+qAirport:"Wie komme ich zum Flughafen?",
+aAirport:"Sie können den Bus L77, ein Taxi, einen Fahrdienst oder ein Privatfahrzeug nutzen.",
+qLate:"Was passiert bei später Anreise?",
+aLate:"Kontaktieren Sie die Unterkunft im Voraus.",
+needHelp:"Brauchen Sie Hilfe?",
+receptionContact:"Rezeption kontaktieren.",
+call:"Anrufen",
+yourOpinion:"Ihre Meinung zählt",
+enjoyed:"Hat Ihnen Ihr Aufenthalt gefallen?",
+reviewText:"Teilen Sie Ihre Erfahrung mit anderen Reisenden.",
+leaveReview:"Bewertung schreiben",
+home:"Start",
+help:"Hilfe"
+},
+
+it:{
+welcome:"Tutto ciò di cui hai bisogno durante il soggiorno, in un unico posto.",
+discoverHub:"Scopri il tuo Guest Hub",
+yourStay:"Il tuo soggiorno",
+everything:"Tutto ciò che ti serve.<br>Quando ti serve.",
+intro:"Informazioni sulla struttura, servizi, trasporti e consigli per il tuo soggiorno a Sant Boi e Barcellona.",
+stay:"Soggiorno",
+room:"La tua camera",
+move:"Spostarsi",
+transport:"Trasporti",
+discover:"Scopri",
+useful:"Informazioni utili",
+arrival:"Il tuo arrivo",
+arrivalText:"Consulta gli orari principali e le informazioni necessarie per arrivo e partenza.",
+checkin:"Da lunedì a giovedì: 12:00–13:00 e 15:30–22:00. Venerdì, weekend e festivi: 12:00–13:30 e 16:30–22:00.",
+before12:"Fino alle 12:00",
+checkout:"Chiedi alla reception se hai bisogno di lasciare i bagagli dopo il check-out.",
+reception:"Reception",
+receptionHours:"Contatta la reception per qualsiasi necessità durante il soggiorno.",
+late:"Arrivi tardivi",
+contactBefore:"Contattaci in anticipo",
+lateText:"In alcune situazioni il ritiro delle chiavi può essere organizzato tramite una cassetta di sicurezza.",
+wifiTitle:"Resta connesso",
+wifiText:"La connessione Wi-Fi gratuita è disponibile per gli ospiti.",
+network:"Rete",
+password:"Password",
+receptionAsk:"Chiedere alla reception",
+comfort:"Comfort",
+services:"Servizi",
+servicesText:"Servizi disponibili per rendere il soggiorno più confortevole.",
+privateBath:"Bagno privato",
+air:"Aria condizionata",
+heating:"Riscaldamento",
+safe:"Cassaforte",
+toiletries:"Prodotti da bagno",
+hairdryer:"Asciugacapelli",
+cleaning:"Pulizia giornaliera",
+lift:"Ascensore",
+luggage:"Deposito bagagli",
+iron:"Ferro da stiro su richiesta",
+important:"Informazioni importanti",
+rules:"Durante il soggiorno",
+rulesIntro:"Indicazioni importanti per un soggiorno confortevole.",
+smoking:"Fumo",
+smokeFree:"Struttura non fumatori",
+smokingText:"Non è consentito fumare nelle camere, comprese le sigarette elettroniche.",
+pets:"Animali",
+notAllowed:"Non ammessi",
+petsText:"Gli animali non sono ammessi.",
+storage:"Deposito bagagli",
+storageText:"Disponibile prima del check-in o dopo il check-out. Chiedi alla reception.",
+breakfast:"Colazione",
+notIncluded:"Non inclusa",
+breakfastText:"Troverai bar e caffetterie per la colazione vicino alla struttura.",
+connected:"Ben collegato",
+airportHeading:"Aeroporto, Barcellona e Fira.",
+transportIntro:"Sant Boi offre comodi collegamenti con Barcellona e l'aeroporto.",
+openStation:"Apri stazione FGC",
+airport:"Aeroporto",
+airportInfo:"Autobus L77 da T1 e T2 a Sant Boi. Sono disponibili anche taxi, VTC e veicoli privati.",
+barcelonaInfo:"Plaça Espanya è raggiungibile dalla stazione FGC Sant Boi in circa 18 minuti.",
+firaInfo:"Collegamento FGC particolarmente comodo per congressi, fiere ed eventi professionali.",
+parking:"Parcheggio",
+publicParking:"Parcheggio pubblico",
+parkingInfo:"L'hostal non dispone di parcheggio privato. Chiedi alla reception le opzioni vicine.",
+explore:"Esplora",
+discoverSantBoi:"Scopri Sant Boi.",
+culture:"Cultura",
+nature:"Natura",
+gastronomy:"Gastronomia",
+restaurants:"Ristoranti vicini",
+pharmacy:"Farmacie vicine",
+questions:"Domande frequenti.",
+qWifi:"È disponibile il Wi-Fi?",
+aWifi:"Sì. Il Wi-Fi gratuito è disponibile per gli ospiti.",
+qBreakfast:"La colazione è inclusa?",
+aBreakfast:"No. Troverai bar e caffetterie nelle vicinanze.",
+qLuggage:"Posso lasciare i bagagli?",
+aLuggage:"Sì. Chiedi alla reception informazioni sul deposito bagagli.",
+qPets:"Gli animali sono ammessi?",
+aPets:"No. Gli animali non sono ammessi.",
+qAirport:"Come arrivo all'aeroporto?",
+aAirport:"Puoi utilizzare l'autobus L77, taxi, VTC o un veicolo privato.",
+qLate:"Cosa succede se arrivo tardi?",
+aLate:"Contatta la struttura in anticipo per organizzare il tuo arrivo.",
+needHelp:"Hai bisogno di aiuto?",
+receptionContact:"Contatta la reception.",
+call:"Chiama",
+yourOpinion:"La tua opinione conta",
+enjoyed:"Ti è piaciuto il soggiorno?",
+reviewText:"Condividi la tua esperienza con altri viaggiatori.",
+leaveReview:"Scrivi una recensione",
+home:"Home",
+help:"Aiuto"
+},
+
+pt:{
+welcome:"Tudo o que precisa durante a sua estadia, num único lugar.",
+discoverHub:"Descubra o seu Guest Hub",
+yourStay:"A sua estadia",
+everything:"Tudo o que precisa.<br>Quando precisa.",
+intro:"Informações sobre o alojamento, serviços, transportes e recomendações para a sua estadia em Sant Boi e Barcelona.",
+stay:"Estadia",
+room:"O seu quarto",
+move:"Deslocações",
+transport:"Transportes",
+discover:"Descobrir",
+useful:"Informações úteis",
+arrival:"A sua chegada",
+arrivalText:"Consulte os principais horários e informações para a chegada e partida.",
+checkin:"De segunda a quinta: 12:00–13:00 e 15:30–22:00. Sexta, fins de semana e feriados: 12:00–13:30 e 16:30–22:00.",
+before12:"Até às 12:00",
+checkout:"Consulte a receção se precisar de deixar a bagagem depois do check-out.",
+reception:"Receção",
+receptionHours:"Contacte a receção para qualquer necessidade durante a estadia.",
+late:"Chegadas tardias",
+contactBefore:"Contacte antecipadamente",
+lateText:"Em determinadas situações, a recolha das chaves pode ser organizada através de uma caixa de segurança.",
+wifiTitle:"Mantenha-se ligado",
+wifiText:"O alojamento dispõe de Wi-Fi gratuito para hóspedes.",
+network:"Rede",
+password:"Palavra-passe",
+receptionAsk:"Consultar a receção",
+comfort:"Conforto",
+services:"Serviços",
+servicesText:"Serviços disponíveis para tornar a sua estadia mais confortável.",
+privateBath:"Casa de banho privativa",
+air:"Ar condicionado",
+heating:"Aquecimento",
+safe:"Cofre",
+toiletries:"Produtos de higiene",
+hairdryer:"Secador de cabelo",
+cleaning:"Limpeza diária",
+lift:"Elevador",
+luggage:"Depósito de bagagem",
+iron:"Ferro a pedido",
+important:"Informações importantes",
+rules:"Durante a estadia",
+rulesIntro:"Informações importantes para garantir uma estadia confortável.",
+smoking:"Tabaco",
+smokeFree:"Alojamento não fumador",
+smokingText:"Não é permitido fumar nos quartos, incluindo cigarros eletrónicos.",
+pets:"Animais",
+notAllowed:"Não permitidos",
+petsText:"Não são permitidos animais.",
+storage:"Depósito de bagagem",
+storageText:"Disponível antes do check-in ou depois do check-out. Consulte a receção.",
+breakfast:"Pequeno-almoço",
+notIncluded:"Não incluído",
+breakfastText:"Encontrará cafés e opções de pequeno-almoço perto do alojamento.",
+connected:"Bem conectado",
+airportHeading:"Aeroporto, Barcelona e Fira.",
+transportIntro:"Sant Boi oferece ligações convenientes de transporte público para Barcelona e para o aeroporto.",
+openStation:"Abrir estação FGC",
+airport:"Aeroporto",
+airportInfo:"Ligação pelo autocarro L77 desde T1 e T2 até Sant Boi. Também pode utilizar táxi, VTC ou veículo privado.",
+barcelonaInfo:"Plaça Espanya fica a aproximadamente 18 minutos da estação FGC Sant Boi.",
+firaInfo:"Ligação FGC conveniente para congressos, feiras e eventos profissionais.",
+parking:"Estacionamento",
+publicParking:"Estacionamento público",
+parkingInfo:"O hostal não dispõe de estacionamento privado. Consulte a receção sobre opções próximas.",
+explore:"Explorar",
+discoverSantBoi:"Descubra Sant Boi.",
+culture:"Cultura",
+nature:"Natureza",
+gastronomy:"Gastronomia",
+restaurants:"Restaurantes próximos",
+pharmacy:"Farmácias próximas",
+questions:"Perguntas frequentes.",
+qWifi:"Há Wi-Fi?",
+aWifi:"Sim. Está disponível Wi-Fi gratuito.",
+qBreakfast:"O pequeno-almoço está incluído?",
+aBreakfast:"Não. Existem cafés e bares nas proximidades.",
+qLuggage:"Posso deixar a bagagem?",
+aLuggage:"Sim. Consulte a receção sobre o depósito de bagagem.",
+qPets:"São permitidos animais?",
+aPets:"Não. Não são permitidos animais.",
+qAirport:"Como chego ao aeroporto?",
+aAirport:"Pode utilizar o autocarro L77, táxi, VTC ou veículo privado.",
+qLate:"E se chegar tarde?",
+aLate:"Contacte o alojamento antecipadamente para organizar a chegada.",
+needHelp:"Precisa de ajuda?",
+receptionContact:"Contacte a receção.",
+call:"Ligar",
+yourOpinion:"A sua opinião importa",
+enjoyed:"Gostou da sua estadia?",
+reviewText:"Partilhe a sua experiência com outros viajantes.",
+leaveReview:"Escrever uma avaliação",
+home:"Início",
+help:"Ajuda"
+},
+
+pl:{
+welcome:"Wszystko, czego potrzebujesz podczas pobytu, w jednym miejscu.",
+discoverHub:"Odkryj swój Guest Hub",
+yourStay:"Twój pobyt",
+everything:"Wszystko, czego potrzebujesz.<br>Dokładnie wtedy, gdy tego potrzebujesz.",
+intro:"Informacje o obiekcie, usługach, transporcie i rekomendacjach podczas pobytu w Sant Boi i Barcelonie.",
+stay:"Pobyt",
+room:"Twój pokój",
+move:"Transport",
+transport:"Transport",
+discover:"Odkrywaj",
+useful:"Przydatne informacje",
+arrival:"Twój przyjazd",
+arrivalText:"Sprawdź najważniejsze godziny i informacje dotyczące przyjazdu oraz wyjazdu.",
+checkin:"Od poniedziałku do czwartku: 12:00–13:00 i 15:30–22:00. Piątek, weekendy i święta: 12:00–13:30 i 16:30–22:00.",
+before12:"Do 12:00",
+checkout:"Zapytaj w recepcji o możliwość pozostawienia bagażu po wymeldowaniu.",
+reception:"Recepcja",
+receptionHours:"W razie potrzeby skontaktuj się z recepcją podczas pobytu.",
+late:"Późny przyjazd",
+contactBefore:"Skontaktuj się wcześniej",
+lateText:"W niektórych sytuacjach odbiór kluczy może zostać zorganizowany za pomocą skrzynki bezpieczeństwa.",
+wifiTitle:"Pozostań online",
+wifiText:"Goście mogą korzystać z bezpłatnego Wi-Fi.",
+network:"Sieć",
+password:"Hasło",
+receptionAsk:"Zapytaj w recepcji",
+comfort:"Komfort",
+services:"Usługi",
+servicesText:"Usługi dostępne dla większego komfortu podczas pobytu.",
+privateBath:"Prywatna łazienka",
+air:"Klimatyzacja",
+heating:"Ogrzewanie",
+safe:"Sejf",
+toiletries:"Kosmetyki",
+hairdryer:"Suszarka do włosów",
+cleaning:"Codzienne sprzątanie",
+lift:"Winda",
+luggage:"Przechowalnia bagażu",
+iron:"Żelazko na życzenie",
+important:"Ważne informacje",
+rules:"Podczas pobytu",
+rulesIntro:"Ważne informacje zapewniające komfortowy pobyt.",
+smoking:"Palenie",
+smokeFree:"Obiekt dla niepalących",
+smokingText:"Palenie w pokojach jest zabronione, również papierosów elektronicznych.",
+pets:"Zwierzęta",
+notAllowed:"Niedozwolone",
+petsText:"Zwierzęta nie są akceptowane.",
+storage:"Przechowalnia bagażu",
+storageText:"Dostępna przed zameldowaniem lub po wymeldowaniu. Zapytaj w recepcji.",
+breakfast:"Śniadanie",
+notIncluded:"Nie jest wliczone",
+breakfastText:"W pobliżu obiektu znajdują się kawiarnie i miejsca oferujące śniadania.",
+connected:"Dobre połączenia",
+airportHeading:"Lotnisko, Barcelona i Fira.",
+transportIntro:"Sant Boi zapewnia wygodne połączenia komunikacją publiczną z Barceloną i lotniskiem.",
+openStation:"Otwórz stację FGC",
+airport:"Lotnisko",
+airportInfo:"Autobus L77 kursuje z terminali T1 i T2 do Sant Boi. Dostępne są również taksówki, VTC i samochody.",
+barcelonaInfo:"Do Plaça Espanya można dotrzeć ze stacji FGC Sant Boi w około 18 minut.",
+firaInfo:"Dogodne połączenie FGC na kongresy, targi i wydarzenia biznesowe.",
+parking:"Parking",
+publicParking:"Parking publiczny",
+parkingInfo:"Hostal nie posiada prywatnego parkingu. Zapytaj w recepcji o pobliskie opcje.",
+explore:"Odkrywaj",
+discoverSantBoi:"Odkryj Sant Boi.",
+culture:"Kultura",
+nature:"Natura",
+gastronomy:"Gastronomia",
+restaurants:"Restauracje w pobliżu",
+pharmacy:"Apteki w pobliżu",
+questions:"Najczęstsze pytania.",
+qWifi:"Czy jest Wi-Fi?",
+aWifi:"Tak. Goście mogą korzystać z bezpłatnego Wi-Fi.",
+qBreakfast:"Czy śniadanie jest wliczone?",
+aBreakfast:"Nie. W pobliżu znajdują się kawiarnie i bary.",
+qLuggage:"Czy mogę zostawić bagaż?",
+aLuggage:"Tak. Zapytaj w recepcji o przechowalnię bagażu.",
+qPets:"Czy można przyjechać ze zwierzęciem?",
+aPets:"Nie. Zwierzęta nie są akceptowane.",
+qAirport:"Jak dostać się na lotnisko?",
+aAirport:"Możesz skorzystać z autobusu L77, taksówki, VTC lub samochodu.",
+qLate:"Co zrobić w przypadku późnego przyjazdu?",
+aLate:"Skontaktuj się z obiektem wcześniej, aby uzgodnić przyjazd.",
+needHelp:"Potrzebujesz pomocy?",
+receptionContact:"Skontaktuj się z recepcją.",
+call:"Zadzwoń",
+yourOpinion:"Twoja opinia ma znaczenie",
+enjoyed:"Czy pobyt był udany?",
+reviewText:"Podziel się swoim doświadczeniem z innymi podróżnymi.",
+leaveReview:"Napisz opinię",
+home:"Start",
+help:"Pomoc"
+},
+
+ar:{
+welcome:"كل ما تحتاجه أثناء إقامتك في مكان واحد.",
+discoverHub:"اكتشف مركز الضيوف",
+yourStay:"إقامتك",
+everything:"كل ما تحتاجه.<br>عندما تحتاجه.",
+intro:"معلومات عن مكان الإقامة والخدمات ووسائل النقل والتوصيات للاستمتاع بإقامتك في سانت بوي وبرشلونة.",
+stay:"الإقامة",
+room:"غرفتك",
+move:"التنقل",
+transport:"المواصلات",
+discover:"اكتشف",
+useful:"معلومات مفيدة",
+arrival:"وصولك",
+arrivalText:"اطلع على أهم المواعيد والمعلومات اللازمة للوصول والمغادرة.",
+checkin:"من الاثنين إلى الخميس: 12:00–13:00 و15:30–22:00. الجمعة وعطلات نهاية الأسبوع والعطلات الرسمية: 12:00–13:30 و16:30–22:00.",
+before12:"حتى الساعة 12:00",
+checkout:"اسأل مكتب الاستقبال إذا كنت بحاجة إلى ترك أمتعتك بعد تسجيل المغادرة.",
+reception:"الاستقبال",
+receptionHours:"تواصل مع مكتب الاستقبال إذا احتجت إلى أي مساعدة أثناء إقامتك.",
+late:"الوصول المتأخر",
+contactBefore:"تواصل مسبقاً",
+lateText:"في بعض الحالات يمكن ترتيب استلام المفاتيح باستخدام صندوق أمان.",
+wifiTitle:"ابق على اتصال",
+wifiText:"تتوفر خدمة واي فاي مجانية للنزلاء.",
+network:"الشبكة",
+password:"كلمة المرور",
+receptionAsk:"اسأل مكتب الاستقبال",
+comfort:"الراحة",
+services:"الخدمات",
+servicesText:"خدمات متاحة لجعل إقامتك أكثر راحة.",
+privateBath:"حمام خاص",
+air:"تكييف الهواء",
+heating:"التدفئة",
+safe:"خزنة",
+toiletries:"مستلزمات النظافة",
+hairdryer:"مجفف شعر",
+cleaning:"تنظيف يومي",
+lift:"مصعد",
+luggage:"حفظ الأمتعة",
+iron:"مكواة عند الطلب",
+important:"معلومات مهمة",
+rules:"أثناء إقامتك",
+rulesIntro:"بعض المعلومات المهمة لضمان إقامة مريحة.",
+smoking:"التدخين",
+smokeFree:"مكان إقامة لغير المدخنين",
+smokingText:"التدخين غير مسموح داخل الغرف، بما في ذلك السجائر الإلكترونية.",
+pets:"الحيوانات الأليفة",
+notAllowed:"غير مسموح",
+petsText:"الحيوانات الأليفة غير مسموح بها.",
+storage:"حفظ الأمتعة",
+storageText:"متاح قبل تسجيل الدخول أو بعد تسجيل المغادرة. اسأل مكتب الاستقبال.",
+breakfast:"الإفطار",
+notIncluded:"غير مشمول",
+breakfastText:"توجد مقاهٍ وأماكن لتناول الإفطار بالقرب من مكان الإقامة.",
+connected:"موقع جيد الاتصال",
+airportHeading:"المطار، برشلونة وفيرا.",
+transportIntro:"توفر سانت بوي مواصلات عامة مريحة إلى برشلونة والمطار.",
+openStation:"فتح محطة FGC",
+airport:"المطار",
+airportInfo:"تتوفر حافلة L77 من المبنيين T1 وT2 إلى سانت بوي، بالإضافة إلى سيارات الأجرة وخدمات النقل والسيارات الخاصة.",
+barcelonaInfo:"يمكن الوصول إلى Plaça Espanya من محطة FGC Sant Boi في حوالي 18 دقيقة.",
+firaInfo:"اتصال مريح عبر FGC للمؤتمرات والمعارض والفعاليات المهنية.",
+parking:"موقف السيارات",
+publicParking:"موقف عام",
+parkingInfo:"لا يتوفر موقف سيارات خاص في النزل. اسأل مكتب الاستقبال عن الخيارات القريبة.",
+explore:"استكشف",
+discoverSantBoi:"اكتشف سانت بوي.",
+culture:"الثقافة",
+nature:"الطبيعة",
+gastronomy:"المطاعم",
+restaurants:"مطاعم قريبة",
+pharmacy:"صيدليات قريبة",
+questions:"الأسئلة الشائعة.",
+qWifi:"هل تتوفر خدمة Wi-Fi؟",
+aWifi:"نعم، تتوفر خدمة Wi-Fi مجانية للنزلاء.",
+qBreakfast:"هل الإفطار مشمول؟",
+aBreakfast:"لا. توجد مقاهٍ وأماكن لتناول الإفطار بالقرب من مكان الإقامة.",
+qLuggage:"هل يمكنني ترك أمتعتي؟",
+aLuggage:"نعم. اسأل مكتب الاستقبال عن خدمة حفظ الأمتعة.",
+qPets:"هل الحيوانات الأليفة مسموح بها؟",
+aPets:"لا، الحيوانات الأليفة غير مسموح بها.",
+qAirport:"كيف أصل إلى المطار؟",
+aAirport:"يمكنك استخدام حافلة L77 أو سيارة أجرة أو خدمة نقل أو سيارة خاصة.",
+qLate:"ماذا أفعل إذا وصلت متأخراً؟",
+aLate:"تواصل مع مكان الإقامة مسبقاً لترتيب وصولك.",
+needHelp:"هل تحتاج إلى مساعدة؟",
+receptionContact:"تواصل مع مكتب الاستقبال.",
+call:"اتصال",
+yourOpinion:"رأيك مهم",
+enjoyed:"هل استمتعت بإقامتك؟",
+reviewText:"شارك تجربتك مع المسافرين الآخرين.",
+leaveReview:"اكتب مراجعة",
+home:"الرئيسية",
+help:"مساعدة"
 }
 
 };
 
-/* Los demás idiomas se completarán después */
-translations.fr={...translations.en};
-translations.de={...translations.en};
-translations.it={...translations.en};
-translations.pt={...translations.en};
-translations.pl={...translations.en};
-translations.ar={...translations.en};
-
 function changeLanguage(lang){
 
-const dict=translations[lang]||translations.es;
+const dict = translations[lang] || translations.es;
 
-document.documentElement.lang=lang;
-document.documentElement.dir=lang==="ar"?"rtl":"ltr";
+document.documentElement.lang = lang;
+document.documentElement.dir = lang === "ar" ? "rtl" : "ltr";
 
-document.querySelectorAll("[data-t]").forEach(el=>{
-const key=el.dataset.t;
+document.querySelectorAll("[data-t]").forEach(el => {
+
+const key = el.dataset.t;
+
 if(dict[key]){
-el.innerHTML=dict[key];
+el.innerHTML = dict[key];
 }
+
 });
 
 localStorage.setItem("guestHubLanguage",lang);
 
 }
 
-const saved=localStorage.getItem("guestHubLanguage");
+const saved = localStorage.getItem("guestHubLanguage");
 
 if(saved && translations[saved]){
-document.getElementById("language").value=saved;
+
+document.getElementById("language").value = saved;
 changeLanguage(saved);
+
 }
 
 </script>
